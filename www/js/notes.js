@@ -1,11 +1,12 @@
-function initNotes() {
+
+
+function initnotes() {
 
 	 //First, open our db 
 
 	dbShell = window.openDatabase("DD", 2, "DD", 1000000);
 	//run transaction to create initial tables
 	dbShell.transaction(setupTable,dbErrorHandler,getEntries);
-	
 	$("#editFormSubmitButton").click(function(e) {
 		e.preventDefault();
 		e.stopImmediatePropagation();
@@ -42,6 +43,7 @@ function renderEntries(tx,results){
 	   for(var i=0; i<results.rows.length; i++) {
 		 s += "<li><a onClick='showEdit("+results.rows.item(i).id + ");' >" + results.rows.item(i).title + "</a></li>";   
 	   }
+	
 	   $("#noteTitleList").html(s);
 	   $("#noteTitleList").listview("refresh");
 	}
@@ -54,13 +56,13 @@ function saveNote(note, cb) {
 		if(note.id == "") tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",[note.title,note.body, new Date()]);
 		else tx.executeSql("update notes set title=?, body=?, updated=? where id=?",[note.title,note.body, new Date(), note.id]);
 	}, dbErrorHandler,cb);
-	$.mobile.changePage("#main");
+	showContent("notes");
+	
 }
 
 //edit page logic needs to know to get old record (possible)
 function showEdit(noteId) {
 
-	//$.mobile.changePage("#editNotePage");
 	if(noteId >= 0) {
 		//load the values
 		$("#editFormSubmitButton").attr("disabled","disabled"); 
@@ -75,14 +77,14 @@ function showEdit(noteId) {
 			}, dbErrorHandler);
 		
 	} else {
-		//window.location.replace('editnote.html');
-		//$.mobile.loadPage("editnote.html");
 		$("#editFormSubmitButton").removeAttr("disabled");  
 		$("#noteTitle").val('');
-		$("#noteBody").val('');			 
+		$("#noteBody").val('');
+		$("#noteId").val('');	
 	}
-	$.mobile.changePage("#editNotePage");
-	//$('[data-href="notes"]').addClass('ui-btn-active');
+	
+	showContent("editNotePage");
+	
 }
 
 function capturePhoto(){
@@ -98,13 +100,7 @@ function onFail(message) {
 	alert('Failed because: ' + message);
 }
 function uploadPhoto(data){
-	$('#noteslist').append("<img style='width:60px;height:60px;' src='"+data+"'>");
-	
-	}
-	
-function changeSmth() {
-	$("#notes").show();
-	$("#profile").hide();
-	$("#calendar").hide();
+	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
 	
 }
+	

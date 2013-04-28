@@ -38,70 +38,80 @@
 		<div id="loginForm">
 			<input type="text" id="emailId" value="email ID"/>
 			<input type="text" id="password" value="password"/>
-			<button id="loginBtn" class="">Login</button>
-			<button id="signUpBtn" class="">Sign Up</button>
-			<button id="fbLoginBtn" class="">F</button>
+			<button id="loginBtn" >Login</button>
+			<button id="signUpBtn">Sign Up</button>
+			<button id="fbLoginBtn">F</button>
 		</div>
 
-		<div id="openPage"></div>
-		<div id="mainPage">
+
+		<div id="mainPage" >
 		
-			<div data-role="header" data-position="fixed" data-tap-toggle="false">
-				<h1>Doli Diaries</h1>
-			</div>
-			<div data-iscroll="">
-				<div id="profile" data-role="content" class="content_div">
-					
-					
+			
+				<div id="openPage" >
+					<a href="#"><img src="css/images/initial.jpg" width="100%" height="100%"/></a>
 				</div>
-				<div id="notes"  data-role="content" class="content_div">
-							<div id="noteslist" >
-								<ul data-role="listview" id="noteTitleList"></ul>
+				<div id="mainContent" >
+					<div id="leftContent" >
+						<div data-iscroll="" >
+							<div id="profile" data-role="content" class="content_div">
+								<a href="#"><img src="css/images/yellow_doli_logo_320.jpg" width="100%" /></a>
+								
 							</div>
-							<input type="button" id="newNoteSubmitButton" value="New" onClick="showEdit(-1);">
-							<button onclick="capturePhoto();">Capture Photo</button>
+							<div id="notes"  data-role="content" class="content_div">
+										<div id="noteslist" >
+											<ul data-role="listview" id="noteTitleList"></ul>
+										</div>
+										<input type="button" id="newNoteSubmitButton" value="New">
+										
+										
+							</div>
+							<div id="images" data-role="content" class="content_div">
+								
+								Gallery
+								<div id="gallery"></div>
+								<button onclick="capturePhoto();">Capture Photo</button>
+							</div>						
+							<div id="calendar" data-role="content" class="content_div">
+								
+								<input name="mydate" id="mydate" type="date" data-role="datebox"
+									data-options='{"mode":"calbox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+							</div>
 							
+							<div id="editNotePage" data-role="content" class="content_div">
+								<div data-role="header" data-position="fixed" data-tap-toggle="false">
+									<h1>Note</h1>
+								</div>
+								<form id="editNoteForm" >
+									<input type="hidden" name="noteId" id="noteId" value="">
+									<div data-role="fieldcontain">
+										<label for="noteTitle">Title</label>
+										<input type="text" name="noteTitle" id="noteTitle">
+									</div>
+									<div data-role="fieldcontain">
+										<label for="noteBody">Note</label>
+										<textarea name="noteBody" id="noteBody"></textarea>
+									</div>
+									
+									<div data-role="fieldcontain">
+										<button onclick="capturePhoto();">Capture Photo</button>
+										<input type="button" id="editFormSubmitButton" value="Save Note">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div data-role="footer" data-position="fixed" id="mainNavigation">
+						<a data-href="calendar"href="#" ><img src="css/images/calendar.jpg"></a>
+						<a data-href="images" href="#"><img src="css/images/pictures.jpg"></a>
+						<a data-href="notes" href="#"><img src="css/images/notes.jpg"></a>
+						
+					</div>
 				</div>
-				<div id="calendar" data-role="content" class="content_div">
-					
-					<input name="mydate" id="mydate" type="date" data-role="datebox"
-						data-options='{"mode":"calbox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
-				</div>
-			</div>
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li><a data-href="profile" data-role="tab" data-icon="grid" class="ui-btn-active">PROFILE</a></li>
-						<li><a data-href="notes" data-role="tab" data-icon="grid">NOTES</a></li>
-						<li><a data-href="calendar" data-role="tab" data-icon="grid">CALENDAR</a></li>
-					</ul>
-				</div>
-			</div>
-		
+			
 		
 		</div>
 		
-		<div id="editNotePage" data-role="page">
-			<div data-role="header" data-position="fixed" data-tap-toggle="false">
-				<h1>Note</h1>
-			</div>
-			<form id="editNoteForm" >
-				<input type="hidden" name="noteId" id="noteId" value="">
-				<div data-role="fieldcontain">
-					<label for="noteTitle">Title</label>
-					<input type="text" name="noteTitle" id="noteTitle">
-				</div>
-				<div data-role="fieldcontain">
-					<label for="noteBody">Note</label>
-					<textarea name="noteBody" id="noteBody"></textarea>
-				</div>
-				
-				<div data-role="fieldcontain">
-					<button onclick="capturePhoto();">Capture Photo</button>
-					<input type="button" id="editFormSubmitButton" value="Save Note">
-				</div>
-			</form>
-		</div>
+		
 	</div>
 		
 		
