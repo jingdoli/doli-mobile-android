@@ -110,7 +110,7 @@ h1 {
 
 #main{
 	background-color:rgb(11,11,11);
-	background-image:url('/www/images/yellow_doli_logo_320.jpg');
+	background-image:url('images/yellow_doli_logo_320.jpg');
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 }
@@ -125,7 +125,7 @@ h1 {
 
 #openPage {
 	background-color:rgb(11,11,11);
-	background-image:url('/www/images/initial.jpg');
+	background-image:url('images/initial.jpg');
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 	position:absolute; 
