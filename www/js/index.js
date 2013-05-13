@@ -22,7 +22,9 @@ var app = {
 };
 
 $(document).delegate('#loginBtn', 'click', function () {
+	$('#loginContainer').hide();
 	$('#loginForm').hide();
+	
 	$('#mainPage').show();
 });
 
@@ -33,8 +35,8 @@ $(document).delegate('#openPage a', 'click',function() {
     var $toSlide= $("#mainContent"), $fromSlide= $("#openPage");
 	
 
-	$fromSlide.animate({"left":"-100%"},500,'swing');
-	$toSlide.animate({"left":"0%"},500,'swing',function()
+	$fromSlide.animate({"width":"-100%"},500,'swing');
+	$toSlide.animate({"with":"0%"},500,'swing',function()
 	{  
 			
 		$fromSlide.hide();
@@ -49,8 +51,10 @@ $(document).delegate('#mainNavigation a', 'click',function() {
 	var target = this.attributes["data-href"].value;
 	showContent(target);
 	
-
-	
+	$( "#mainNavigation a img" ).removeClass('lighten');
+	$( "#mainNavigation a img" ).addClass('darken');
+	$(this).children(":first").removeClass('darken');
+	$(this).children(":first").addClass('lighten');
 });
 
 $(document).delegate('#newNoteSubmitButton', 'click',function() {
