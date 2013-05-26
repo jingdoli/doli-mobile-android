@@ -76,9 +76,29 @@
 								<button onclick="capturePhoto();">Capture Photo</button>
 							</div>						
 							<div id="calendar" data-role="content" class="content_div">
-								
-								<input name="mydate" id="mydate" type="date" data-role="datebox"
-									data-options='{"mode":"calbox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+								<div id="plus"  data-role="content" class="calendar_content_div">
+									<input name="mydate" id="mydate" type="date" data-role="datebox"
+										data-options='{"mode":"datebox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+								</div>
+								<div id="days"  data-role="content" class="calendar_content_div">
+									<input name="mydate" id="mydate" type="date" data-role="datebox"
+										data-options='{"mode":"calbox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+								</div>
+								<div id="month"  data-role="content" class="calendar_content_div">
+									<input name="mydate" id="mydate" type="date" data-role="datebox"
+										data-options='{"mode":"datebox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+								</div>
+								<div id="one"  data-role="content" class="calendar_content_div">
+									<input name="mydate" id="mydate" type="date" data-role="datebox"
+										data-options='{"mode":"datebox", "useSetButton":false, "useInline": true, "useImmediate":true}'>
+								</div>
+								<div data-position="fixed" id="calendarNavigation">
+									<a data-href="plus" href="#" ><img class="darken" src="css/images/plus.jpg"></a>
+									<a data-href="days" href="#"><img class="darken" src="css/images/days.jpg"></a>
+									<a data-href="month" href="#"><img class="darken" src="css/images/month.jpg"></a>
+									<a data-href="one" href="#"><img class="darken" src="css/images/one.jpg"></a>
+									
+								</div>
 							</div>
 							
 							<div id="editNotePage" data-role="content" class="content_div">

@@ -49,7 +49,7 @@ $(document).delegate('#openPage a', 'click',function() {
 
 $(document).delegate('#mainNavigation a', 'click',function() {
 	var target = this.attributes["data-href"].value;
-	showContent(target);
+	showContent(target, ".content_div");
 	
 	$( "#mainNavigation a img" ).removeClass('lighten');
 	$( "#mainNavigation a img" ).addClass('darken');
@@ -62,8 +62,8 @@ $(document).delegate('#newNoteSubmitButton', 'click',function() {
 });
 
 
-function showContent(target) {
-	$( ".content_div" ).each(function( index ) {
+function showContent(target, classname) {
+	$(classname ).each(function( index ) {
 		if(this.id == target) { 
 			if(eval("typeof init" + target) == "function") {
 				eval("init" + target+ "();");
@@ -77,3 +77,17 @@ function showContent(target) {
 		
 	});
 }
+
+
+
+
+$(document).delegate('#calendarNavigation a', 'click',function() {
+	var target = this.attributes["data-href"].value;
+	showContent(target, ".calendar_content_div");
+	
+	$( "#calendarNavigation a img" ).removeClass('lighten');
+	$( "#calendarNavigation a img" ).addClass('darken');
+	$(this).children(":first").removeClass('darken');
+	$(this).children(":first").addClass('lighten');
+});
+
