@@ -1,4 +1,6 @@
 
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -22,10 +24,32 @@ var app = {
 };
 
 $(document).delegate('#loginBtn', 'click', function () {
-	$('#loginContainer').hide();
-	$('#loginForm').hide();
+
+
+
+	$.ajax
+	({
+	  type: "GET",
+	  url: "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/token/?format=json",
+	  dataType: 'json',
+	  async: false,
+
+	  beforeSend: function (xhr) { 
+		xhr.setRequestHeader("Authorization", 
+			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
+		}
+	}) .done(function(data) { 
+		alert("key "+data.objects[0].key); 
+		$('#loginContainer').hide();
+		$('#loginForm').hide();
+		$('#mainPage').show();
 	
-	$('#mainPage').show();
+	})
+    .fail(function() { alert("error"); })
+    ;
+	
+
+
 });
 
 $(document).delegate('#openPage a', 'click',function() {
@@ -68,7 +92,6 @@ function showContent(target, classname) {
 			if(eval("typeof init" + target) == "function") {
 				eval("init" + target+ "();");
 			}
-			
 			$(this).show(); 
 		}
 		else {

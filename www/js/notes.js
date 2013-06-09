@@ -66,7 +66,7 @@ function saveNote(note, cb) {
 		if(note.id == "") tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",[note.title,note.body, new Date()]);
 		else tx.executeSql("update notes set title=?, body=?, updated=? where id=?",[note.title,note.body, new Date(), note.id]);
 	}, dbErrorHandler,cb);
-	showContent("notes");
+	showContent("notes", ".content_div");
 	
 }
 
@@ -76,13 +76,12 @@ function deleteNote(note, cb) {
 	dbShell.transaction(function(tx) {
 		if(note.id != "") tx.executeSql("delete from notes where id=?",[note.id]);
 	}, dbErrorHandler,cb);
-	showContent("notes");
+	showContent("notes", ".content_div");
 	
 }
 
 //edit page logic needs to know to get old record (possible)
 function showEdit(noteId) {
-
 	if(noteId >= 0) {
 		//load the values
 		
@@ -108,8 +107,7 @@ function showEdit(noteId) {
 		$("#noteBody").val('');
 		$("#noteId").val('');	
 	}
-	
-	showContent("editNotePage");
+	showContent("editNotePage", ".content_div");
 	
 }
 
