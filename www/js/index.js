@@ -39,7 +39,7 @@ $(document).delegate('#loginBtn', 'click', function () {
 			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
 		}
 	}) .done(function(data) { 
-		alert("key "+data.objects[0].key); 
+		//alert("key "+data.objects[0].key); 
 		$('#loginContainer').hide();
 		$('#loginForm').hide();
 		$('#mainPage').show();
