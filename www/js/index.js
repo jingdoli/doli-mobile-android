@@ -39,13 +39,19 @@ $(document).delegate('#loginBtn', 'click', function () {
 			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
 		}
 	}) .done(function(data) { 
-		//alert("key "+data.objects[0].key); 
 		$('#loginContainer').hide();
 		$('#loginForm').hide();
 		$('#mainPage').show();
 	
 	})
-    .fail(function() { alert("error"); })
+    .fail(function() { 
+		navigator.notification.alert(
+            "Username and password don't match our records.",  // message
+            function() {$( "#password" ).val('')},         // callback
+            'Error',            // title
+            'OK'                  // buttonName
+        );
+	})
     ;
 	
 
