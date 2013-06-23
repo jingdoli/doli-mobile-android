@@ -45,15 +45,18 @@ function getEntries() {
 
 function renderEntries(tx,results){
 	//doLog("render entries");
+	
 	if (results.rows.length == 0) {
-		$("#noteslist").html("<p>You currently do not have any notes.</p>");
+		$("#noteslistMessage").html("<p>You currently do not have any notes.</p>");
+		$("#noteTitleList").html("");
+		$("#noteTitleList").listview("refresh");
 	} else {
 	   var s = "";
 	   for(var i=0; i<results.rows.length; i++) {
 		 s += "<li data-icon='edit'><a onClick='showEdit("+results.rows.item(i).id + ");' >" + results.rows.item(i).title + " <span class='small'>" 
 		 +new XDate(results.rows.item(i).updated).toString('hh:mm dd/mm/yyyy'); +"</span></a></li>";   
 	   }
-	
+		$("#noteslistMessage").html("");
 	   $("#noteTitleList").html(s);
 	   $("#noteTitleList").listview("refresh");
 	}
@@ -63,7 +66,10 @@ function saveNote(note, cb) {
 	//Sometimes you may want to jot down something quickly....
 	if(note.title == "") note.title = "[No Title]";
 	dbShell.transaction(function(tx) {
-		if(note.id == "") tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",[note.title,note.body, new Date()]);
+		if(note.id == "") {
+			tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",[note.title,note.body, new Date()]);
+			
+			}
 		else tx.executeSql("update notes set title=?, body=?, updated=? where id=?",[note.title,note.body, new Date(), note.id]);
 	}, dbErrorHandler,cb);
 	showContent("notes", ".content_div");
