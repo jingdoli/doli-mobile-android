@@ -58,6 +58,51 @@ $(document).delegate('#loginBtn', 'click', function () {
 
 });
 
+$(document).delegate('#signUpBtn', 'click', function () {
+		$('#loginContainer').hide();
+		$('#loginForm').hide();
+		$('#signUpContainer').show();
+});
+
+$(document).delegate('#signPostUpBtn', 'click', function () {
+
+
+
+	$.ajax
+	({
+		type: "POST",
+		url: "http://http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=0af25802c4a62704bdaf2fdb4a8610f12db00bc2",
+		dataType: 'json',
+		async: false,
+		 data: { username: $( "#s_userName" ).val(), password: $( "#s_password" ).val(), email: $( "#s_emailId" ).val() }
+	}) .done(function(data) { 
+		navigator.notification.alert(
+            "Please chaeck your e-mail to complete registration.",  // message
+            function() {$( "#password" ).val('')},         // callback
+            'Done,',            // title
+            'OK'                  // buttonName
+        );
+		$('#signUpContainer').hide();
+		$('#loginContainer').show();
+		$('#loginForm').show();
+		
+	})
+    .fail(function() { 
+		navigator.notification.alert(
+            "There was a problem during registration.",  // message
+            function() {$( "#password" ).val('')},         // callback
+            'Error',            // title
+            'OK'                  // buttonName
+        );
+	})
+    ;
+	
+
+
+});
+
+
+
 $(document).delegate('#openPage a', 'click',function() {
 
 	event.preventDefault();
