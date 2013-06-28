@@ -160,6 +160,9 @@ h1 {
 #loginContainer {
 	background-image:url('images/yellow_doli_logo_320.jpg');
 }
+#fbLoginBtn {
+
+}
 
  #editNotePage,  #mainPage, #mainContent, #plus, #days, #month, #one, #signUpContainer {
 	display: none;

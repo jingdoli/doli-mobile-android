@@ -17,7 +17,7 @@
        Doli Diaries
     </author>
 
-<access origin="*" />
+	<access origin="*" />
 	<feature name="http://api.phonegap.com/1.0/device" />
 	<feature name="http://api.phonegap.com/1.0/camera"/>
 	<feature name="http://api.phonegap.com/1.0/contacts"/>
@@ -28,6 +28,11 @@
 	<feature name="http://api.phonegap.com/1.0/notification"/>
 	
 	<icon src="icon.png" />
+	
+	<gap:plugin name="FacebookConnect">
+		<param name="APP_ID" value="634897163203187" />
+		<param name="APP_NAME" value="Doli Diaries" />
+	</gap:plugin>
 
 
 </widget>

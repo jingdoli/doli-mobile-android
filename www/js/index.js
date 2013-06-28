@@ -18,10 +18,16 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        
+        try {
+			FB.init({ appId: "634897163203187", nativeInterface: CDV.FB, useCachedDialogs: false });
+			
+		} catch (e) {
+			alert(e);
+		}
     },
 
 };
+app.initialize();
 
 $(document).delegate('#loginBtn', 'click', function () {
 
