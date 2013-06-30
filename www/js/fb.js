@@ -111,6 +111,5 @@ function publishStoryFriend() {
 }
 			
 $(document).delegate('#fbLoginBtn', 'click',function() {
-	alert(10);
 	login();
 });
