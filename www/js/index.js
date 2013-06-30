@@ -12,6 +12,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener("backbutton", onBackButton, true);
     },
     // deviceready Event Handler
     //
@@ -29,10 +30,56 @@ var app = {
 };
 app.initialize();
 
+function onBackButton(e) {
+	showContent("notes", ".content_div");
+}
+
+
+function dbErrorHandler(err){
+	alert("DB Error: "+err.message + "\nCode="+err.code);
+}
+
 $(document).delegate('#loginBtn', 'click', function () {
 
+	// Check if have already the user on this device
+	if(!dbShell) {
+		dbShell = window.openDatabase("DD", 2, "DD", 1000000);
+	}
+	dbShell.transaction(function (tx) {
+			tx.executeSql("CREATE TABLE IF NOT EXISTS user(id INTEGER PRIMARY KEY,name,pass)");
+		},
+		dbErrorHandler,
+		function (tx) {
+			dbShell.transaction(function(tx) {
+				tx.executeSql("select id, name, pass from user",[],
+				function (tx,results){
+					if (results.rows.length == 0) {
+						serverLogin(function () {
+							alert(13);
+							hideLogin();
+							tx.executeSql("insert into user(name,pass) values(?,?)",
+								[$( "#emailId" ).val(),$( "#password" ).val()]);
+						}
+						);
+					} else {
+						hideLogin();
+					}
+				},
+				dbErrorHandler);
+			}, dbErrorHandler);
+		});
+
+	
 
 
+});
+function hideLogin() {
+		$('#loginContainer').hide();
+		$('#loginForm').hide();
+		$('#mainPage').show();
+}
+function serverLogin(loginSucess) {
+	// Call the server o make sure user exists
 	$.ajax
 	({
 	  type: "GET",
@@ -45,10 +92,7 @@ $(document).delegate('#loginBtn', 'click', function () {
 			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
 		}
 	}) .done(function(data) { 
-		$('#loginContainer').hide();
-		$('#loginForm').hide();
-		$('#mainPage').show();
-	
+		loginSucess();
 	})
     .fail(function() { 
 		navigator.notification.alert(
@@ -59,10 +103,7 @@ $(document).delegate('#loginBtn', 'click', function () {
         );
 	})
     ;
-	
-
-
-});
+}
 
 $(document).delegate('#signUpBtn', 'click', function () {
 		$('#loginContainer').hide();

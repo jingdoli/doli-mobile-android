@@ -1,10 +1,11 @@
-
+var dbShell = null;
 
 function initnotes() {
 
 	 //First, open our db 
-
-	dbShell = window.openDatabase("DD", 2, "DD", 1000000);
+	if(!dbShell) {
+		dbShell = window.openDatabase("DD", 2, "DD", 1000000);
+	}
 	//run transaction to create initial tables
 	dbShell.transaction(setupTable,dbErrorHandler,getEntries);
 	$("#editFormSubmitButton").click(function(e) {
@@ -33,9 +34,7 @@ function initnotes() {
 function setupTable(tx){
 	tx.executeSql("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY,title,body,updated)");
 }
-function dbErrorHandler(err){
-	alert("DB Error: "+err.message + "\nCode="+err.code);
-}
+
 //I handle getting entries from the db
 function getEntries() {
 	dbShell.transaction(function(tx) {
@@ -67,10 +66,13 @@ function saveNote(note, cb) {
 	if(note.title == "") note.title = "[No Title]";
 	dbShell.transaction(function(tx) {
 		if(note.id == "") {
-			tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",[note.title,note.body, new Date()]);
-			
-			}
-		else tx.executeSql("update notes set title=?, body=?, updated=? where id=?",[note.title,note.body, new Date(), note.id]);
+			tx.executeSql("insert into notes(title,body,updated) values(?,?,?)",
+				[note.title,note.body, new Date()]);
+		}
+		else {
+			tx.executeSql("update notes set title=?, body=?, updated=? where id=?",
+				[note.title,note.body, new Date(), note.id]);
+		}
 	}, dbErrorHandler,cb);
 	showContent("notes", ".content_div");
 	
