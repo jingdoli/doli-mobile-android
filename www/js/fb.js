@@ -64,15 +64,13 @@ function logout() {
             
 function login() {
 	FB.login(
+		
 		 function(response) {
-				
-				 if (response.session) {
-						hideLogin();
-				 } else {
-					alert('not logged in');
-				 }
-			 },
-			 { scope: "email" }
+				alert(response.status);
+				hideLogin();
+		},
+		{ scope: "email" }		
+			
 		 );
 }
 			
