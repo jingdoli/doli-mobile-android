@@ -20,6 +20,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         try {
+			alert("init");
 			FB.init({ appId: "634897163203187", nativeInterface: CDV.FB, useCachedDialogs: false });
 			
 		} catch (e) {
@@ -55,7 +56,6 @@ $(document).delegate('#loginBtn', 'click', function () {
 				function (tx,results){
 					if (results.rows.length == 0) {
 						serverLogin(function () {
-							alert(13);
 							hideLogin();
 							tx.executeSql("insert into user(name,pass) values(?,?)",
 								[$( "#emailId" ).val(),$( "#password" ).val()]);
