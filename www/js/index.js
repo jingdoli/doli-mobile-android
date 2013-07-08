@@ -55,7 +55,6 @@ $(document).delegate('#loginBtn', 'click', function () {
 				function (tx,results){
 					if (results.rows.length == 0) {
 						serverLogin(function () {
-							alert(13);
 							hideLogin();
 							tx.executeSql("insert into user(name,pass) values(?,?)",
 								[$( "#emailId" ).val(),$( "#password" ).val()]);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.example"
+        id        = "com.dolidiaries.beta"
         versionCode="10" 
         version   = "1.0.0">
 
@@ -28,11 +28,13 @@
 	<feature name="http://api.phonegap.com/1.0/notification"/>
 	
 	<icon src="icon.png" />
+	<gap:splash src="splash.png" width="640" height="960"/>
 	
 	<gap:plugin name="FacebookConnect">
 		<param name="APP_ID" value="634897163203187" />
 		<param name="APP_NAME" value="Doli Diaries" />
 	</gap:plugin>
 
+	
 
 </widget>

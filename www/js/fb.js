@@ -64,17 +64,14 @@ function logout() {
             
 function login() {
 	FB.login(
-			 function(response) {
-					 if (response.session) {
-							$('#loginContainer').hide();
-							$('#loginForm').hide();
-							$('#mainPage').show();
-					 } else {
-						alert('not logged in');
-					 }
-				 },
-				 { scope: "email" }
-			 );
+		
+		 function(response) {
+				alert(response.status);
+				hideLogin();
+		},
+		{ scope: "email" }		
+			
+		 );
 }
 			
 			
