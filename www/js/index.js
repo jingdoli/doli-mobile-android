@@ -20,7 +20,9 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         try {
-			FB.init({ appId: "634897163203187", nativeInterface: CDV.FB, useCachedDialogs: false });
+			FB.init({ appId: "634897163203187",
+			nativeInterface : CDV.FB,
+			useCachedDialogs : false});
 			
 		} catch (e) {
 			alert(e);
