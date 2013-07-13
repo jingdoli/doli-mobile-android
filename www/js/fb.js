@@ -66,8 +66,22 @@ function login() {
 	FB.login(
 		
 		 function(response) {
-				alert(response.status);
+			if(response.authResponse) {
+				//alert(response.status);
 				hideLogin();
+				 FB.api("/me/picture?width=180&height=180",  function(response) {
+			 
+					var profileImage = response.data.url.split('https://')[1], //remove https to avoid any cert issues
+						randomNumber = Math.floor(Math.random()*256);
+			 
+				   //add random number to reduce the frequency of cached images showing
+				   $('#profile').append('<img src=\"http://' + profileImage + '?' + randomNumber + '\">');
+					
+				}); 
+
+			} else {
+				alert('Login failed');
+			}
 		},
 		{ scope: "email" }		
 			
