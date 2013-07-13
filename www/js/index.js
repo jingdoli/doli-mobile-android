@@ -146,7 +146,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	$.ajax
 	({
 		type: "POST",
-		url: "http://http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=0af25802c4a62704bdaf2fdb4a8610f12db00bc2",
+		url: "http://http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f",
 		dataType: 'json',
 		async: false,
 		 data: { username: $( "#s_userName" ).val(), password: $( "#s_password" ).val(), email: $( "#s_emailId" ).val() }
