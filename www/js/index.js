@@ -27,15 +27,42 @@ var app = {
 		} catch (e) {
 			alert(e);
 		}
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
     },
 
 };
 app.initialize();
 
+function onFileSystemSuccess(fileSystem) {
+	fileSystem.root.getDirectory("Photos", {create: true, exclusive: false}, getDirSuccess, fail);
+	
+}
+
+function getDirSuccess(dirEntry) {
+    // Get a directory reader
+    var directoryReader = dirEntry.createReader();
+	window.photosDir = dirEntry;
+    // Get a list of all the entries in the directory
+    directoryReader.readEntries(readerSuccess,fail);
+	
+}
+
+function readerSuccess(entries) {
+    var i;
+    for (i=0; i<entries.length; i++) {
+        alert(entries[i].name);
+    }
+}
+
 function onBackButton(e) {
 	showContent("notes", ".content_div");
 }
 
+function fail(err){
+	alert("Error: "+err.code);
+	for(var a in err.code)
+		alert(a + ' ' + err[a]);
+}
 
 function dbErrorHandler(err){
 	alert("DB Error: "+err.message + "\nCode="+err.code);
