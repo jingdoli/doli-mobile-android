@@ -8,6 +8,7 @@ function initnotes() {
 	}
 	//run transaction to create initial tables
 	dbShell.transaction(setupTable,dbErrorHandler,getEntries);
+	// setup functions for buttons
 	$("#editFormSubmitButton").click(function(e) {
 		e.preventDefault();
 		e.stopImmediatePropagation();
@@ -124,7 +125,7 @@ function capturePhoto(){
 	var pictureSource=navigator.camera.PictureSourceType;
 	
 	navigator.camera.getPicture(uploadPhoto, onFail, { quality: 20, 
-		destinationType: destinationType.FILE_URI, source:pictureSource.PHOTOLIBRARY });
+		destinationType: destinationType.FILE_URI, source:pictureSource.PHOTOLIBRARY, saveToPhotoAlbum: true });
 		
 }
 
@@ -132,7 +133,13 @@ function onFail(message) {
 	alert('Failed because: ' + message);
 }
 function uploadPhoto(data){
+	
 	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
+	var name = data.substring(data.lastIndexOf('/')+1),
+        tempEntry = new DirectoryEntry({fullpath:data});
+	
+    // copy the file to a new directory and rename it
+    tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function () {alert('Error')});
 	
 }
 	
