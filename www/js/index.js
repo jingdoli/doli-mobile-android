@@ -140,19 +140,16 @@ $(document).delegate('#signUpBtn', 'click', function () {
 });
 
 $(document).delegate('#signPostUpBtn', 'click', function () {
-
-
-
 	$.ajax
 	({
 		type: "POST",
-		url: "http://http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f",
+		url: "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f",
 		dataType: 'json',
 		async: false,
 		 data: { username: $( "#s_userName" ).val(), password: $( "#s_password" ).val(), email: $( "#s_emailId" ).val() }
 	}) .done(function(data) { 
 		navigator.notification.alert(
-            "Please chaeck your e-mail to complete registration.",  // message
+            "Please check your e-mail to complete registration.",  // message
             function() {$( "#password" ).val('')},         // callback
             'Done,',            // title
             'OK'                  // buttonName
@@ -162,7 +159,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 		$('#loginForm').show();
 		
 	})
-    .fail(function() { 
+    .fail(function() {
 		navigator.notification.alert(
             "There was a problem during registration.",  // message
             function() {$( "#password" ).val('')},         // callback
