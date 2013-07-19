@@ -165,6 +165,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 		url:  "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f",
 		dataType: 'json',
 		async: false,
+		cache: false,
 		data: 
 			JSON.stringify (
 				{
@@ -200,6 +201,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 });
 $(document).delegate('#signOffBtn', 'click', function () {
 		$('#mainPage').hide();
+		$('#profile').empty();
 		$('#loginContainer').show();
 		$('#loginForm').show();
 });
