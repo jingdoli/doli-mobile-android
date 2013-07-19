@@ -171,7 +171,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	$.ajax
 	({
 		type: "POST",
-		url:  "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f",
+		url:  "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f&genid="+(new Date()).getTime(),
 		dataType: 'json',
 		async: false,
 		cache: false,
@@ -180,8 +180,8 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 				{
 					username: $( "#s_userName" ).val(), 
 					password: $( "#s_password" ).val(), 
-					email: $( "#s_emailId" ).val(),
-					genid: ''+(new Date()).getTime()
+					email: $( "#s_emailId" ).val()
+					
 					} ) 
 		 
 	}) .done(function(data) { 

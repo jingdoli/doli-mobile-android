@@ -138,6 +138,7 @@ function uploadPhoto(data){
 	var name = data.substring(data.lastIndexOf('/')+1),
         tempEntry = new DirectoryEntry({fullpath:data});
 	// copy the file to a new directory and rename it
+	alert(tempEntry.fullPath);
     tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function (err) {alert('Error'+err)});
 	
 }
