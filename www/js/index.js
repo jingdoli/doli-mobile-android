@@ -198,6 +198,12 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 
 
 });
+$(document).delegate('#signOffBtn', 'click', function () {
+		$('#signUpContainer').hide();
+		$('#loginContainer').show();
+		$('#loginForm').show();
+});
+
 $(document).delegate('#signUpBackBtn', 'click', function () {
 		$('#signUpContainer').hide();
 		$('#loginContainer').show();
