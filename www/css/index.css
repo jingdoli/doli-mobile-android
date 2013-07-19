@@ -139,7 +139,7 @@ h1 {
     
 }
 
-.ui-btn-inner , .ui-input-text  {
+.ui-btn-inner , .ui-input-text, #profile  {
 	font-family:"Comic Sans MS", sans-serif !important;
 	font-size:14px !important;;
 
@@ -164,6 +164,7 @@ h1 {
 
 }
 
+
  #editNotePage,  #mainPage, #mainContent, #plus, #days, #month, #one, #signUpContainer {
 	display: none;
 }
@@ -178,7 +179,7 @@ background-color:rgb(11,11,11);
 	margin-bottom:40px;
 }
 
-#editNotePage, #calendar, #images, #notes {
+#editNotePage, #calendar, #images, #notes, #profile {
 	background-color:#FFFFCC;
 	width:100%;
 	height :100%;
@@ -188,7 +189,9 @@ background-color:rgb(11,11,11);
 	top: 0px; 
 	bottom: 0px;
 }
-
+#profile {
+	padding: 10px;
+}
  #editNoteForm {
 	margin: 5px;
 }

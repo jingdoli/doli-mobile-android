@@ -78,6 +78,10 @@ function login() {
 				   $('#profile').append('<img src=\"http://' + profileImage + '?' + randomNumber + '\">');
 					
 				}); 
+				 FB.api('/me', function(response) {
+				   $('#profile').append('<div>' +response.name+ '</div">');
+				   $('#profile').append('<div>' +response.email+ '</div">');
+				 });
 
 			} else {
 				alert('Login failed');

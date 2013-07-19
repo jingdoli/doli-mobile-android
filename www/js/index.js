@@ -90,6 +90,8 @@ $(document).delegate('#loginBtn', 'click', function () {
 						}
 						);
 					} else {
+					
+						$( "#emailId" ).val(results.rows.item(0).name);
 						hideLogin();
 					}
 				},
@@ -105,7 +107,10 @@ function hideLogin() {
 		$('#loginContainer').hide();
 		$('#loginForm').hide();
 		$('#mainPage').show();
+
+		
 }
+
 function serverLogin(loginSucess) {
 	// Call the server o make sure user exists
 	$.ajax
@@ -121,6 +126,8 @@ function serverLogin(loginSucess) {
 		}
 	}) .done(function(data) { 
 		loginSucess();
+		$('#profile').append('<img src=\"css/images/profile.jpg\">');
+		$('#profile').append('<div>' +$( "#emailId" ).val() +'</div>');
 	})
     .fail(function() { 
 		navigator.notification.alert(
@@ -139,6 +146,15 @@ $(document).delegate('#signUpBtn', 'click', function () {
 		$('#signUpContainer').show();
 });
 
+$(document).delegate("#emailId, #password", "focus", function() {
+	
+    $('#loginForm').css({position: 'relative'});
+	
+});
+$(document).delegate("#emailId, #password", "blur", function() {
+    $('#loginForm').css({position: 'absolute'});
+});
+
 $(document).delegate('#signPostUpBtn', 'click', function () {
 
 
@@ -149,7 +165,14 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 		url: "http://http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=0af25802c4a62704bdaf2fdb4a8610f12db00bc2",
 		dataType: 'json',
 		async: false,
-		 data: { username: $( "#s_userName" ).val(), password: $( "#s_password" ).val(), email: $( "#s_emailId" ).val() }
+		data: 
+			JSON.stringify (
+				{
+					username: $( "#s_userName" ).val(), 
+					password: $( "#s_password" ).val(), 
+					email: $( "#s_emailId" ).val()
+					} ) 
+		 
 	}) .done(function(data) { 
 		navigator.notification.alert(
             "Please chaeck your e-mail to complete registration.",  // message
@@ -162,9 +185,9 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 		$('#loginForm').show();
 		
 	})
-    .fail(function() { 
+    .fail(function(err) { 
 		navigator.notification.alert(
-            "There was a problem during registration.",  // message
+            "There was a problem during registration."+err,  // message
             function() {$( "#password" ).val('')},         // callback
             'Error',            // title
             'OK'                  // buttonName
@@ -174,6 +197,11 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	
 
 
+});
+$(document).delegate('#signUpBackBtn', 'click', function () {
+		$('#signUpContainer').hide();
+		$('#loginContainer').show();
+		$('#loginForm').show();
 });
 
 

@@ -57,8 +57,8 @@ function renderEntries(tx,results){
 		 +new XDate(results.rows.item(i).updated).toString('hh:mm dd/mm/yyyy'); +"</span></a></li>";   
 	   }
 		$("#noteslistMessage").html("");
-	   $("#noteTitleList").html(s);
-	   $("#noteTitleList").listview("refresh");
+		$("#noteTitleList").html(s);
+		$("#noteTitleList").listview("refresh");
 	}
 }
 
@@ -137,7 +137,7 @@ function uploadPhoto(data){
 	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
 	var name = data.substring(data.lastIndexOf('/')+1),
         tempEntry = new DirectoryEntry({fullpath:data});
-	
+	alert(window.photosDir);
     // copy the file to a new directory and rename it
     tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function () {alert('Error')});
 	
