@@ -199,7 +199,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 
 });
 $(document).delegate('#signOffBtn', 'click', function () {
-		$('#signUpContainer').hide();
+		$('#mainPage').hide();
 		$('#loginContainer').show();
 		$('#loginForm').show();
 });
