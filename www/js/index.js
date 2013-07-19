@@ -155,6 +155,15 @@ $(document).delegate("#emailId, #password", "blur", function() {
     $('#loginForm').css({position: 'absolute'});
 });
 
+$(document).delegate("#emailId, #password", "focus", function() {
+	
+    $('#loginForm').css({position: 'relative'});
+	
+});
+$(document).delegate("#emailId, #password", "blur", function() {
+    $('#loginForm').css({position: 'absolute'});
+});
+
 $(document).delegate('#signPostUpBtn', 'click', function () {
 
 
@@ -171,7 +180,8 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 				{
 					username: $( "#s_userName" ).val(), 
 					password: $( "#s_password" ).val(), 
-					email: $( "#s_emailId" ).val()
+					email: $( "#s_emailId" ).val(),
+					genid: ''+(new Date()).getTime()
 					} ) 
 		 
 	}) .done(function(data) { 

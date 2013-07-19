@@ -137,9 +137,8 @@ function uploadPhoto(data){
 	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
 	var name = data.substring(data.lastIndexOf('/')+1),
         tempEntry = new DirectoryEntry({fullpath:data});
-	alert(window.photosDir);
-    // copy the file to a new directory and rename it
-    tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function () {alert('Error')});
+	// copy the file to a new directory and rename it
+    tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function (err) {alert('Error'+err)});
 	
 }
 	
