@@ -135,11 +135,13 @@ function onFail(message) {
 function uploadPhoto(data){
 	
 	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
-	var name = data.substring(data.lastIndexOf('/')+1),
-        tempEntry = new DirectoryEntry({fullpath:data});
+	var name = data.substring(data.lastIndexOf('/')+1);
+       
 	// copy the file to a new directory and rename it
 	alert(tempEntry.fullPath);
-    tempEntry.copyTo(window.photosDir, name, function () {alert('Image saved')},function (err) {alert('Error'+err)});
-	
+	tempEntry = window.fileSystem.root.getFile(data, null, function (entry) {
+				entry.copyTo(window.photosDir, name, function () {alert('Image saved')},function (err) {alert('Error'+err)});
+			}, function (err) {alert('Error'+err)});
+   
 }
 	

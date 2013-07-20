@@ -35,13 +35,14 @@ app.initialize();
 
 function onFileSystemSuccess(fileSystem) {
 	fileSystem.root.getDirectory("Photos", {create: true, exclusive: false}, getDirSuccess, fail);
-	
+	window.fileSystem = fileSystem;
 }
 
 function getDirSuccess(dirEntry) {
     // Get a directory reader
     var directoryReader = dirEntry.createReader();
 	window.photosDir = dirEntry;
+	
     // Get a list of all the entries in the directory
     directoryReader.readEntries(readerSuccess,fail);
 	
@@ -172,7 +173,9 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	({
 		type: "POST",
 		url:  "http://ec2-23-22-241-127.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f&genid="+(new Date()).getTime(),
-		dataType: 'json',
+		dataType: 'application/json',
+		contentType: 'application/json',
+		processData: false,
 		async: false,
 		cache: false,
 		data: 
@@ -197,12 +200,24 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 		
 	})
     .fail(function(err) { 
-		navigator.notification.alert(
-            "There was a problem during registration."+err,  // message
-            function() {$( "#password" ).val('')},         // callback
-            'Error',            // title
-            'OK'                  // buttonName
-        );
+		if(err.status == '201') {
+				navigator.notification.alert(
+					"Please check your e-mail to complete registration.",  // message
+					function() {$( "#password" ).val('')},         // callback
+					'Done,',            // title
+					'OK'                  // buttonName
+				);
+				$('#signUpContainer').hide();
+				$('#loginContainer').show();
+				$('#loginForm').show();
+		} else {
+			navigator.notification.alert(
+				"There was a problem during registration."+err,  // message
+				function() {$( "#password" ).val('')},         // callback
+				'Error',            // title
+				'OK'                  // buttonName
+			);
+		}
 	})
     ;
 	
