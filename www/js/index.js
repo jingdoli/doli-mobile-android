@@ -156,13 +156,13 @@ $(document).delegate("#emailId, #password", "blur", function() {
     $('#loginForm').css({position: 'absolute'});
 });
 
-$(document).delegate("#emailId, #password", "focus", function() {
+$(document).delegate("#s_userName, #s_emailId, #s_password, #s_password2", "focus", function() {
 	
-    $('#loginForm').css({position: 'relative'});
+    $('#signupForm').css({position: 'relative'});
 	
 });
-$(document).delegate("#emailId, #password", "blur", function() {
-    $('#loginForm').css({position: 'absolute'});
+$(document).delegate("#s_userName, #s_emailId, #s_password, #s_password2", "blur", function() {
+    $('#signupForm').css({position: 'absolute'});
 });
 
 $(document).delegate('#signPostUpBtn', 'click', function () {

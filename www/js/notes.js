@@ -138,10 +138,20 @@ function uploadPhoto(data){
 	var name = data.substring(data.lastIndexOf('/')+1);
        
 	// copy the file to a new directory and rename it
-	alert(tempEntry.fullPath);
 	tempEntry = window.fileSystem.root.getFile(data, null, function (entry) {
-				entry.copyTo(window.photosDir, name, function () {alert('Image saved')},function (err) {alert('Error'+err)});
-			}, function (err) {alert('Error'+err)});
+				entry.copyTo(window.photosDir, name, 
+						function () {alert('Image saved')},
+						function (err) {
+							alert('Error 1 '+err);
+							for(var i in err) {
+								alert(i+' ' + err[i]);
+							}});
+			}, function (err) {
+				alert('Error 2 '+err);
+				for(var i in err) {
+					alert(i+' ' + err[i]);
+				}});
+			});
    
 }
 	
