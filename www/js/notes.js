@@ -136,22 +136,39 @@ function uploadPhoto(data){
 	
 	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
 	var name = data.substring(data.lastIndexOf('/')+1);
-       
-	// copy the file to a new directory and rename it
-	tempEntry = window.fileSystem.root.getFile(data, null, function (entry) {
-				entry.copyTo(window.photosDir, name, 
-						function () {alert('Image saved')},
-						function (err) {
-							alert('Error 1 '+err);
-							for(var i in err) {
-								alert(i+' ' + err[i]);
-							}});
-			}, function (err) {
+    // copy the file to a new directory and rename it
+	tempEntry = window.fileSystem.root.getFile(name, null, 
+			function (entry) {
+				entry.copyTo(window.photosDir, name+(new Date()).getTime(), 
+								function () {
+									//alert('Image saved');
+								},
+								function (err) {
+									alert('Error saving image '+err.code);
+								});
+			}, 
+			function (err) {
 				alert('Error 2 '+err);
-				for(var i in err) {
-					alert(i+' ' + err[i]);
-				}});
 			});
+			
    
+}
+
+function initimages() {
+	 var directoryReader = window.photosDir.createReader();
+	
+    // Get a list of all the entries in the directory
+    directoryReader.readEntries(readerSuccess,fail);
+}
+
+
+function readerSuccess(entries) {
+    var i;
+	var str = '';
+    for (i=0; i<entries.length; i++) {
+		var entry = entries[i];
+		str+=('<img style="width:60px;height:60px;" src="'+entry.fullPath+'">');
+	}
+	$('#gallery').html(str);
 }
 	

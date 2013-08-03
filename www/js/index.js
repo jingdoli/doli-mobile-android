@@ -27,6 +27,7 @@ var app = {
 		} catch (e) {
 			alert(e);
 		}
+		window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onFileSystemTempSuccess, fail);
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
     },
 
@@ -35,25 +36,19 @@ app.initialize();
 
 function onFileSystemSuccess(fileSystem) {
 	fileSystem.root.getDirectory("Photos", {create: true, exclusive: false}, getDirSuccess, fail);
+
+}
+function onFileSystemTempSuccess(fileSystem) {
 	window.fileSystem = fileSystem;
 }
 
 function getDirSuccess(dirEntry) {
     // Get a directory reader
-    var directoryReader = dirEntry.createReader();
 	window.photosDir = dirEntry;
-	
-    // Get a list of all the entries in the directory
-    directoryReader.readEntries(readerSuccess,fail);
-	
+
 }
 
-function readerSuccess(entries) {
-    var i;
-    for (i=0; i<entries.length; i++) {
-        alert(entries[i].name);
-    }
-}
+
 
 function onBackButton(e) {
 	showContent("notes", ".content_div");
@@ -202,7 +197,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
     .fail(function(err) { 
 		if(err.status == '201') {
 				navigator.notification.alert(
-					"Please check your e-mail to complete registration.",  // message
+					"User account created successfully! Please use your username to log in.",  // message
 					function() {$( "#password" ).val('')},         // callback
 					'Done,',            // title
 					'OK'                  // buttonName
@@ -210,6 +205,14 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 				$('#signUpContainer').hide();
 				$('#loginContainer').show();
 				$('#loginForm').show();
+		} else if(err.status == '404') {
+		
+			navigator.notification.alert(
+				"Sorry, the username already exists, please try another username."+err,  // message
+				function() {$( "#s_userName" ).val(''); $( "#s_password" ).val(''); $( "#s_emailId" ).val('');},     
+				'Error',            // title
+				'OK'                  // buttonName
+			);
 		} else {
 			navigator.notification.alert(
 				"There was a problem during registration."+err,  // message
@@ -276,15 +279,19 @@ $(document).delegate('#newNoteSubmitButton', 'click',function() {
 function showContent(target, classname) {
 	$(classname ).each(function( index ) {
 		if(this.id == target) { 
-			if(eval("typeof init" + target) == "function") {
-				eval("init" + target+ "();");
-			}
 			$(this).show(); 
 		}
 		else {
 			$(this).hide();
 		}
 		
+	});
+	$(classname ).each(function( index ) {
+		if(this.id == target) { 
+			if(eval("typeof init" + target) == "function") {
+				eval("init" + target+ "();");
+			}
+		}
 	});
 }
 
