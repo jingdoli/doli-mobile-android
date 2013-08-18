@@ -35,7 +35,7 @@ function initnotes() {
 	
 //I just create our initial table - all one of em
 function setupTable(tx){
-	tx.executeSql("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY,title,body,updated)");
+	tx.executeSql("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY,title TEXT,body TEXT,updated DATE)");
 }
 
 //I handle getting entries from the db
@@ -135,8 +135,9 @@ function onFail(message) {
 	alert('Failed because: ' + message);
 }
 function uploadPhoto(data){
-	
-	$('#gallery').append("<img style='width:60px;height:60px;' src='"+data+"'>");
+	var imageCode = getImgCode(data);
+	alert(imageCode);
+	$('#gallery').append(imageCode);
 	var name = data.substring(data.lastIndexOf('/')+1);
     // copy the file to a new directory and rename it
 	tempEntry = window.fileSystem.root.getFile(name, null, 
@@ -167,10 +168,25 @@ function initimages() {
 function readerSuccess(entries) {
     var i;
 	var str = '';
+	var photos = [];
     for (i=0; i<entries.length; i++) {
 		var entry = entries[i];
-		str+=('<img style="width:60px;height:60px;" src="'+entry.fullPath+'">');
+		str+=getImgCode(entry.fullPath);
+		//photos[i] = {'src': entry.fullPath};
 	}
 	$('#gallery').html(str);
+	var jQT = new $.jQTouch({
+                icon: 'homeicon.png',
+                startupScreen: 'Default.jpg',
+                statusBar: 'black',
+
+            });
+	jQT.generateGallery("photos",photos);
+}
+
+function getImgCode(url) {
+	var code =  '<a href="#photos"><img style="max-width:60px;max-height:60px;margin:4px;" src="'+utl+'"></a>';
+	alert(code);
+	return code;
 }
 	
