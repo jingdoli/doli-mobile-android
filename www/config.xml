@@ -27,6 +27,7 @@
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	<feature name="http://api.phonegap.com/1.0/notification"/>
 	
+        
 	<icon src="icon.png" />
 	<gap:splash src="splash.png" width="640" height="980"/>
 	
