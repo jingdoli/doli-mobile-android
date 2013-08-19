@@ -113,7 +113,7 @@ function serverLogin(loginSuccess) {
 	$.ajax
 	({
 	  type: "GET",
-	  url: "http://ec2-54-226-141-39.compute-1.amazonaws.com/api/v1/token/?format=json",
+	  url: "http://ec2-54-211-79-105.compute-1.amazonaws.com/api/v1/token/?format=json",
 	  dataType: 'json',
 	  async: false,
 
@@ -168,7 +168,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	$.ajax
 	({
 		type: "POST",
-		url:  "http://ec2-54-226-141-39.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=393efdd24a1cb2c7cfc12e26303de4a2c0fdc999&genid="+(new Date()).getTime(),
+		url:  "http://ec2-54-211-79-105.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=393efdd24a1cb2c7cfc12e26303de4a2c0fdc999&genid="+(new Date()).getTime(),
 		dataType: 'application/json',
 		contentType: 'application/json',
 		processData: false,
