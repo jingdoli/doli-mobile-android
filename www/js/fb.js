@@ -3,10 +3,12 @@ if ((typeof cordova == 'undefined') && (typeof Cordova == 'undefined')) alert('C
 	if (typeof FB == 'undefined') alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
 	
 FB.Event.subscribe('auth.login', function(response) {
+    mixpanel.track("facebook login");
 						//auth.login event
 				   });
 	
 FB.Event.subscribe('auth.logout', function(response) {
+    mixpanel.track("facebook logout");
 						//auth.logout event
 				   });
 

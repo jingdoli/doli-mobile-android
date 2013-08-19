@@ -10,6 +10,7 @@ function initnotes() {
 	dbShell.transaction(setupTable,dbErrorHandler,getEntries);
 	// setup functions for buttons
 	$("#editFormSubmitButton").click(function(e) {
+        mixpanel.track("Note Edit");
 		e.preventDefault();
 		e.stopImmediatePropagation();
 		var data = {title:$("#noteTitle").val(), 
@@ -21,6 +22,7 @@ function initnotes() {
 		});
 	});
 	$("#deleteFormSubmitButton").click(function(e) {
+        mixpanel.track("Note Delete");
 		e.preventDefault();
 		e.stopImmediatePropagation();
 		var data = {title:$("#noteTitle").val(), 

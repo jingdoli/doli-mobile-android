@@ -67,6 +67,7 @@ function dbErrorHandler(err){
 $(document).delegate('#loginBtn', 'click', function () {
 
 	// Check if have already the user on this device
+    mixpanel.track("User login button");
 	if(!dbShell) {
 		dbShell = window.openDatabase("DD", 2, "DD", 1000000);
 	}
@@ -107,12 +108,12 @@ function hideLogin() {
 		
 }
 
-function serverLogin(loginSucess) {
+function serverLogin(loginSuccess) {
 	// Call the server o make sure user exists
 	$.ajax
 	({
 	  type: "GET",
-	  url: "http://ec2-54-227-114-102.compute-1.amazonaws.com/api/v1/token/?format=json",
+	  url: "http://ec2-54-226-141-39.compute-1.amazonaws.com/api/v1/token/?format=json",
 	  dataType: 'json',
 	  async: false,
 
@@ -167,7 +168,7 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 	$.ajax
 	({
 		type: "POST",
-		url:  "http://ec2-54-227-114-102.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=57018a04ac265719812f18b034c89288e24ec56f&genid="+(new Date()).getTime(),
+		url:  "http://ec2-54-226-141-39.compute-1.amazonaws.com/api/v1/newuser/?username=dolimobile&api_key=393efdd24a1cb2c7cfc12e26303de4a2c0fdc999&genid="+(new Date()).getTime(),
 		dataType: 'application/json',
 		contentType: 'application/json',
 		processData: false,
