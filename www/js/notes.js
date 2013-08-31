@@ -174,6 +174,7 @@ function readerSuccess(entries) {
 		str+=getImgCode(entry.fullPath);
 		//photos[i] = {'src': entry.fullPath};
 	}
+	
 	$('#gallery').html(str);
 	var jQT = new $.jQTouch({
                 icon: 'homeicon.png',

@@ -104,6 +104,8 @@ function hideLogin() {
 		$('#loginContainer').hide();
 		$('#loginForm').hide();
 		$('#mainPage').show();
+		$('#mainContent').show();
+		showContent("profile",".content_div");
 
 		
 }
