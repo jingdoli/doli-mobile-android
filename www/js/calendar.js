@@ -1,13 +1,12 @@
-$(document).delegate('#timetable tr td', 'click', function () {
-	var timeid = $( this ).children(":first").attr("id");
+$(document).delegate('#timetable tr', 'click', function () {
+	var timeid = $( this ).children(":nth-child(2)").children(":first").attr("id");
 	var hour = timeid.slice(-2);
-	
 	var currentDate = $("#currentDate").data("date");
 	currentDate = currentDate.clone();
 	currentDate.setHours(hour);
-	$("#start").val(currentDate.toString('yyyy-MM-dd')+'T'+currentDate.toString('hh:mm'));
+	$("#start").val(currentDate.toString('yyyy-MM-dd')+'T'+currentDate.toString('HH:mm'));
 	currentDate.addHours(1);
-	$("#end").val(currentDate.toString('yyyy-MM-dd')+'T'+currentDate.toString('hh:mm'));
+	$("#end").val(currentDate.toString('yyyy-MM-dd')+'T'+currentDate.toString('HH:mm'));
 	showContent("plus", ".calendar_content_div");
 });
 
@@ -17,8 +16,8 @@ $(document).delegate('#saveEvent', 'click', function () {
 	dbShell.transaction(function(tx) {
 		tx.executeSql("insert into events(title,body,start,end) values(?,?,?,?)",
 				[$("#eventSubject").val(),$("#noteEvent").val(), 
-				startDate.toString('yyyy-MM-dd hh:mm:ss'), 
-				endDate.toString('yyyy-MM-dd hh:mm:ss')
+				startDate.toString('yyyy-MM-dd HH:mm:ss'), 
+				endDate.toString('yyyy-MM-dd HH:mm:ss')
 				]);
 	}, dbErrorHandler);
 	//showContent("calendar", ".content_div");
@@ -36,7 +35,12 @@ function initcalendar() {
 	var currentDate = new XDate();
 	$("#currentDate").html(currentDate.toString('dddd, MMMM d, yyyy'));
 	$("#currentDate").data( "date", currentDate);
-	retrieveEvents(currentDate);
+	//retrieveEvents(currentDate);
+	$( "#calendarNavigation a img" ).removeClass('lighten');
+	$( "#calendarNavigation a img" ).addClass('darken');
+	$( "#calendarNavigation a#one_link img" ).removeClass('darken');
+	$( "#calendarNavigation a#one_link img" ).addClass('lighten');
+	showContent("one", ".calendar_content_div");
 }
 
 function readEvents() {
@@ -56,7 +60,10 @@ function initone() {
 	var currentDate = $("#currentDate").data("date");
 	retrieveEvents(currentDate);
 }
-
+function initplus() {
+	$("#eventSubject").val("");
+	$("#noteBody").val("");
+}
 //I just create our initial table - all one of em
 function setupEventTable(tx){
 	tx.executeSql("CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY,title TEXT,body TEXT, start TEXT, end TEXT)");

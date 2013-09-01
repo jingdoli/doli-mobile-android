@@ -116,30 +116,32 @@ mixpanel.init("f86a04e26a207bc7bfa892c91ac46965");</script><!-- end Mixpanel -->
 								<div id="jqt"></div>
 							</div>						
 							<div id="calendar" data-role="content" class="content_div">
+							
 								<div id="plus"  data-role="content" class="calendar_content_div">
 									<form id="editEventForm" >
 										<input type="text" id="eventSubject" placeholder="Subject"/>
-										<div data-role="fieldcontain">
-											<label for="start">Start:</label>
-											<input type="datetime-local" id="start" placeholder="Start yyyy/mm/dd hh:ii" />
-											
-										</div>
-										<div data-role="fieldcontain">
-											<label for="end">End:</label>
-											<input type="datetime-local" id="end" placeholder="End yyyy/mm/dd hh:ii" />
-										</div>
-										<div data-role="fieldcontain">
-											<label for="recurrence">Recurrence: </label>
-											<select id="recurrence" >
+										<table>
+											<tr>
+												<td>Start&nbsp;</td>
+												<td><input type="datetime-local" id="start" placeholder="Start yyyy/mm/dd hh:ii" /></td>
+											</tr>
+											<tr>
+												<td>End&nbsp;</td>
+												<td><input type="datetime-local" id="end" placeholder="End yyyy/mm/dd hh:ii" /></td>
+											</tr>
+											<tr>
+												<td>Recurrence&nbsp;</td>
+												<td><select id="recurrence" >
 														<option>None</option>
 														<option>Daily</option>
 														<option>Weekly</option>
-											</select>
-										</div>
-										<div data-role="fieldcontain">
-											<label for="noteEvent">Note</label>
-											<textarea name="noteEvent" id="noteBody"></textarea>
-										</div>
+												</select>
+												</td>
+											</tr>
+										</table>
+										
+										Note
+										<textarea name="noteEvent" id="noteBody"></textarea>
 										<input type="button" id="saveEvent" value="Save Event">
 									</form>
 								</div>
@@ -160,15 +162,15 @@ mixpanel.init("f86a04e26a207bc7bfa892c91ac46965");</script><!-- end Mixpanel -->
 									<table id="timetable"  width="100%">
 										<tr>
 											<td width="30%">7:00 AM</td>
-											<td width="70%"><div id="time_7" ></div></td>
+											<td width="70%"><div id="time_07" ></div></td>
 										</tr>
 										<tr>
 											<td width="20%">8:00 AM</td>
-											<td><div id="time_8" ></div></td>
+											<td><div id="time_08" ></div></td>
 										</tr>
 										<tr>
 											<td width="20%">9:00 AM</td>
-											<td><div id="time_8" ></div></td>
+											<td><div id="time_09" ></div></td>
 										</tr>
 										<tr>
 											<td width="20%">10:00 AM</td>
@@ -220,11 +222,11 @@ mixpanel.init("f86a04e26a207bc7bfa892c91ac46965");</script><!-- end Mixpanel -->
 										</tr>											
 									</table>
 								</div>
-								<div data-position="fixed" id="calendarNavigation">
-									<a data-href="plus" href="#" ><img class="darken" src="css/images/plus.jpg"></a>
+								<div  id="calendarNavigation">
+									<a data-href="plus" href="#" id="plus_link"><img class="darken" src="css/images/plus.jpg"></a>
 									<!-- a data-href="days" href="#"><img class="darken" src="css/images/days.jpg"></a -->
-									<a data-href="month" href="#"><img class="darken" src="css/images/month.jpg"></a>
-									<a data-href="one" href="#"><img class="darken" src="css/images/one.jpg"></a>
+									<a data-href="month" href="#" id="month_link"><img class="darken" src="css/images/month.jpg"></a>
+									<a data-href="one" href="#" id="one_link"><img class="darken" src="css/images/one.jpg"></a>
 									
 								</div>
 							</div>
@@ -232,14 +234,11 @@ mixpanel.init("f86a04e26a207bc7bfa892c91ac46965");</script><!-- end Mixpanel -->
 							<div id="editNotePage" data-role="content" class="content_div">
 								<form id="editNoteForm" >
 									<input type="hidden" name="noteId" id="noteId" value="">
-									<div data-role="fieldcontain">
-										<label for="noteTitle">Title</label>
-										<input type="text" name="noteTitle" id="noteTitle">
-									</div>
-									<div data-role="fieldcontain">
-										<label for="noteBody">Note</label>
-										<textarea name="noteBody" id="noteBody"></textarea>
-									</div>
+									Title
+									<input type="text" name="noteTitle" id="noteTitle">
+									Note
+									<textarea name="noteBody" id="noteBody"></textarea>
+									
 									
 									<div data-role="fieldcontain">
 										<!--button onclick="capturePhoto();">Capture Photo</button-->
