@@ -311,3 +311,6 @@ $(document).delegate('#calendarNavigation a', 'click',function() {
 	$(this).children(":first").addClass('lighten');
 });
 
+$(document).delegate('#userVoiceBtn', 'click',function() {
+    showUserVoice(cfg);
+});
