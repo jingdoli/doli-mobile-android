@@ -72,5 +72,6 @@ function showUserVoice(cfg){
 }
 
 $(document).delegate('#userVoiceBtn', 'click',function() {
+    mixpanel.track("User support & feedback");
     showUserVoice(cfg);
 });
