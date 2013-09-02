@@ -136,7 +136,6 @@ function onFail(message) {
 }
 function uploadPhoto(data){
 	var imageCode = getImgCode(data);
-	alert(imageCode);
 	$('#gallery').append(imageCode);
 	var name = data.substring(data.lastIndexOf('/')+1);
     // copy the file to a new directory and rename it
@@ -144,7 +143,7 @@ function uploadPhoto(data){
 			function (entry) {
 				entry.copyTo(window.photosDir, name+(new Date()).getTime(), 
 								function () {
-									//alert('Image saved');
+									alert('Image saved');
 								},
 								function (err) {
 									alert('Error saving image '+err.code);
@@ -158,9 +157,8 @@ function uploadPhoto(data){
 }
 
 function initimages() {
-	 var directoryReader = window.photosDir.createReader();
-	
-    // Get a list of all the entries in the directory
+	var directoryReader = window.photosDir.createReader();
+	// Get a list of all the entries in the directory
     directoryReader.readEntries(readerSuccess,fail);
 }
 
@@ -172,9 +170,9 @@ function readerSuccess(entries) {
     for (i=0; i<entries.length; i++) {
 		var entry = entries[i];
 		str+=getImgCode(entry.fullPath);
-		//photos[i] = {'src': entry.fullPath};
+		photos[i] = {'src': entry.fullPath};
 	}
-	
+	alert(str);
 	$('#gallery').html(str);
 	var jQT = new $.jQTouch({
                 icon: 'homeicon.png',
@@ -186,8 +184,7 @@ function readerSuccess(entries) {
 }
 
 function getImgCode(url) {
-	var code =  '<a href="#photos"><img style="max-width:60px;max-height:60px;margin:4px;" src="'+utl+'"></a>';
-	alert(code);
+	var code =  "<a href=\"#photos\"><img style=\"max-width:60px;max-height:60px;margin:4px;\" src=\""+url+"\"></a>";
 	return code;
 }
 	

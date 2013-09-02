@@ -77,7 +77,7 @@ function dbErrorHandler(err){
 }
 
 $(document).delegate('#loginBtn', 'click', function () {
-	hideLogin(); return;
+	//hideLogin(); return;
 	// Check if have already the user on this device
     mixpanel.track("User login button");
 	if(!dbShell) {

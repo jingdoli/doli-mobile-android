@@ -20,7 +20,6 @@ $(document).delegate('#saveEvent', 'click', function () {
 				endDate.toString('yyyy-MM-dd HH:mm:ss')
 				]);
 	}, dbErrorHandler);
-	//showContent("calendar", ".content_div");
 	showContent("one", ".calendar_content_div");
 });
 
@@ -35,7 +34,6 @@ function initcalendar() {
 	var currentDate = new XDate();
 	$("#currentDate").html(currentDate.toString('dddd, MMMM d, yyyy'));
 	$("#currentDate").data( "date", currentDate);
-	//retrieveEvents(currentDate);
 	$( "#calendarNavigation a img" ).removeClass('lighten');
 	$( "#calendarNavigation a img" ).addClass('darken');
 	$( "#calendarNavigation a#one_link img" ).removeClass('darken');
