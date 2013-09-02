@@ -1,4 +1,16 @@
-
+var cfg = { 
+        task:'launchFeedback',//[launchFeedback|contactUs|viewForum|postIdea]
+        
+        site:'dolidiaries.uservoice.com',
+        key:'UFU9pwhS027Qhg2ChgBNg',
+        secret:'EWBzhNArCNLg1ISFxyaJq20OdjQaAV3nhDxJu2cJc',
+        
+        topicId:0,//[0|453|333 (any valid topicId as interger)]
+        showContactUs:1,//[0|1], Show/hide Contact us button
+        showForum:1,//[0|1] Show/hide Forum button
+        showPostIdea:1,//[0|1] Show/hide Post an idea button
+        showKnowledgeBase:1//[0|1] Show/hide KnowledgeBase items
+};
 
 
 var app = {
@@ -312,5 +324,6 @@ $(document).delegate('#calendarNavigation a', 'click',function() {
 });
 
 $(document).delegate('#userVoiceBtn', 'click',function() {
+    mixpanel.track("User voice button");
     showUserVoice(cfg);
 });
