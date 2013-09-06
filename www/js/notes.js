@@ -143,7 +143,7 @@ function uploadPhoto(data){
 			function (entry) {
 				entry.copyTo(window.photosDir, name+(new Date()).getTime(), 
 								function () {
-									alert('Image saved');
+									//alert('Image saved');
 								},
 								function (err) {
 									alert('Error saving image '+err.code);
@@ -172,7 +172,7 @@ function readerSuccess(entries) {
 		str+=getImgCode(entry.fullPath);
 		photos[i] = {'src': entry.fullPath};
 	}
-	alert(str);
+	//alert(str);
 	$('#gallery').html(str);
 	var jQT = new $.jQTouch({
                 icon: 'homeicon.png',
