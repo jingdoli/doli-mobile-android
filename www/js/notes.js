@@ -188,3 +188,14 @@ function getImgCode(url) {
 	return code;
 }
 	
+	/*
+	
+$(document).delegate("#noteTitle, #noteBody", "focus", function() {
+	
+    $('#editNoteForm').css({position: 'relative'});
+	
+});
+$(document).delegate("#noteTitle, #noteBody", "blur", function() {
+    $('#editNoteForm').css({position: 'fixed'});
+});
+*/

@@ -123,3 +123,15 @@ function retrieveEvents(currentDate) {
 		}, dbErrorHandler);
 	}
 }
+
+
+	/*
+$(document).delegate("#start, #end, #recurrence, #noteEvent", "focus", function() {
+	
+    $('#editEventForm').css({position: 'relative'});
+	
+});
+$(document).delegate("#start, #end, #recurrence, #noteEvent", "blur", function() {
+    $('#editEventForm').css({position: 'fixed'});
+});
+*/
