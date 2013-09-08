@@ -136,14 +136,22 @@ function onFail(message) {
 }
 function uploadPhoto(data){
 	var imageCode = getImgCode(data);
-	$('#gallery').append(imageCode);
+	var image = new window.Image();
+	image.src=data;
+	$('#gallery_list').append(imageCode);
 	var name = data.substring(data.lastIndexOf('/')+1);
+
     // copy the file to a new directory and rename it
 	tempEntry = window.fileSystem.root.getFile(name, null, 
 			function (entry) {
 				entry.copyTo(window.photosDir, name+(new Date()).getTime(), 
 								function () {
-									//alert('Image saved');
+										if(window.instancePhotoSwipe) {
+											window.Code.PhotoSwipe.detatch(window.instancePhotoSwipe);
+										}
+										window.instancePhotoSwipe = window.Code.PhotoSwipe.attach( 
+											window.document.querySelectorAll('#gallery_list a'), 
+											{} );
 								},
 								function (err) {
 									alert('Error saving image '+err.code);
@@ -152,6 +160,8 @@ function uploadPhoto(data){
 			function (err) {
 				alert('Error 2 '+err);
 			});
+
+		
 			
    
 }
@@ -172,19 +182,22 @@ function readerSuccess(entries) {
 		str+=getImgCode(entry.fullPath);
 		photos[i] = {'src': entry.fullPath};
 	}
-	//alert(str);
-	$('#gallery').html(str);
-	var jQT = new $.jQTouch({
-                icon: 'homeicon.png',
-                startupScreen: 'Default.jpg',
-                statusBar: 'black',
-
-            });
-	jQT.generateGallery("photos",photos);
+	if(i>0)	{
+		$('#gallery_list').html(str);
+	
+		if(window.instancePhotoSwipe) {
+			window.Code.PhotoSwipe.detatch(window.instancePhotoSwipe);
+		}
+		window.instancePhotoSwipe = window.Code.PhotoSwipe.attach( 
+			window.document.querySelectorAll('#gallery_list a'), 
+			{} );
+	}
 }
 
 function getImgCode(url) {
-	var code =  "<a href=\"#photos\"><img style=\"max-width:60px;max-height:60px;margin:4px;\" src=\""+url+"\"></a>";
+
+	//var code =  "<a href=\"#photos\"><img style=\"max-width:60px;max-height:60px;margin:4px;\" src=\""+url+"\"></a>";
+	var code = "<li><a href=\""+url+"\"><img style=\"max-width:60px;max-height:60px;margin:4px;\" src=\""+url+"\" /></a></li>";
 	return code;
 }
 	

@@ -39,8 +39,11 @@ var app = {
 		} catch (e) {
 			alert(e);
 		}
+		
+		//Load images from the filesystem
 		window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, onFileSystemTempSuccess, fail);
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+		
     },
 
 };
@@ -136,9 +139,10 @@ function serverLogin(loginSuccess) {
 			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
 		}
 	}) .done(function(data) { 
-		loginSucess();
+		
 		$('#profile').append('<img src=\"css/images/profile.jpg\">');
 		$('#profile').append('<div>' +$( "#emailId" ).val() +'</div>');
+		loginSucess();
 	})
     .fail(function() { 
 		navigator.notification.alert(
@@ -205,8 +209,9 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
             'OK'                  // buttonName
         );
 		$('#signUpContainer').hide();
-		$('#loginContainer').show();
 		$('#loginForm').show();
+		$('#loginContainer').show();
+
 		
 	})
     .fail(function(err) { 
@@ -245,14 +250,15 @@ $(document).delegate('#signPostUpBtn', 'click', function () {
 $(document).delegate('#signOffBtn', 'click', function () {
 		$('#mainPage').hide();
 		$('#profile').empty();
-		$('#loginContainer').show();
 		$('#loginForm').show();
+		$('#loginContainer').show();
+
 });
 
 $(document).delegate('#signUpBackBtn', 'click', function () {
 		$('#signUpContainer').hide();
-		$('#loginContainer').show();
 		$('#loginForm').show();
+		$('#loginContainer').show();
 });
 
 
