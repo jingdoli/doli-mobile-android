@@ -36,12 +36,12 @@ html, body {
 
 
 #loginForm , #signupForm {
-
-	float:bottom;
+	width:90%;
+	bottom: 0px;
 	position: absolute;
-	bottom: 0;
-	right: 10%;
-	left:10%;
+	
+	right: 5%;
+	left:5%;
 }
 
  #editEventForm, #editNoteForm {
@@ -98,7 +98,7 @@ background-color:#FFFFCC;
 	background-color:rgb(11,11,11);
 	position: absolute; 
 	top: 0px; 
-	bottom: 0px;
+	left: 0px;
 }
 #loginContainer {
 	background-image:url('images/yellow_doli_logo_320.jpg');
