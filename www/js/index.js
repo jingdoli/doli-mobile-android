@@ -76,7 +76,13 @@ function fail(err){
 }
 
 function dbErrorHandler(err){
-	alert("DB Error: "+err.message + "\nCode="+err.code);
+		navigator.notification.alert(
+            "DB Error:"+err.message + "\nCode="+err.code,  // message
+            function() {},         // callback
+            'Error',            // title
+            'OK'                  // buttonName
+        );
+	
 }
 
 $(document).delegate('#loginBtn', 'click', function () {
@@ -108,7 +114,8 @@ $(document).delegate('#loginBtn', 'click', function () {
 					}
 				},
 				dbErrorHandler);
-			}, dbErrorHandler);
+			}, 
+			dbErrorHandler);
 		});
 
 	
@@ -139,10 +146,9 @@ function serverLogin(loginSuccess) {
 			"Basic " + Base64.encode ($( "#emailId" ).val()+':'+  $( "#password" ).val()) )
 		}
 	}) .done(function(data) { 
-		
 		$('#profile').append('<img src=\"css/images/profile.jpg\">');
 		$('#profile').append('<div>' +$( "#emailId" ).val() +'</div>');
-		loginSucess();
+		loginSuccess();
 	})
     .fail(function() { 
 		navigator.notification.alert(
