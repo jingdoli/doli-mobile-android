@@ -190,9 +190,20 @@ li.ui-li {
 
 font-size:8px;
 }
+.nonCurrentMonth {
 
+	background-color:rgba(212,200,168,0.5);
+}
 
+.currentMonth {
 
+	background-color:rgba(225,230,170,0.5);
+}
+
+.hasEvent {
+	background-color:rgba(255,255,0,0.5);
+}
+}
 
 
 

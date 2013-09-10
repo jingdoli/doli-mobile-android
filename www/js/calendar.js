@@ -56,7 +56,7 @@ function readEvents() {
 
 function initone() {
 	var currentDate = $("#currentDate").data("date");
-	retrieveEvents(currentDate);
+	retrieveEvents(currentDate, markDateDay);
 }
 function initplus() {
 	$("#eventSubject").val("");
@@ -90,7 +90,7 @@ $(document).delegate('#one_calendar_back', 'click', function () {
 	currentDate.addDays(-1);
 	$("#currentDate").html(currentDate.toString('dddd, MMMM d, yyyy'));
 	$("#currentDate").data( "date", currentDate);
-	retrieveEvents(currentDate);
+	retrieveEvents(currentDate, markDateDay);
 });
 
 $(document).delegate('#one_calendar_forward', 'click', function () {
@@ -98,10 +98,10 @@ $(document).delegate('#one_calendar_forward', 'click', function () {
 	currentDate.addDays(1);
 	$("#currentDate").html(currentDate.toString('dddd, MMMM d, yyyy'));
 	$("#currentDate").data( "date", currentDate);
-	retrieveEvents(currentDate);
+	retrieveEvents(currentDate, markDateDay);
 });
 
-function retrieveEvents(currentDate) {
+function retrieveEvents(currentDate, markDate) {
 	for(var i = 7; i< 22; ++i) {
 		$("#time_" + i).html("");
 	}
@@ -115,15 +115,115 @@ function retrieveEvents(currentDate) {
 						if(currentDate.getFullYear() == start.getFullYear() &&
 							currentDate.getMonth() == start.getMonth() &&
 							currentDate.getDate() == start.getDate() ) {
-							$("#time_" + start.getHours()).html(results.rows.item(i).title);
+							markDate(start, results.rows.item(i));
+							
 						}
+						
 				 }
 			},
 			dbErrorHandler);
 		}, dbErrorHandler);
 	}
 }
+function markDateDay(start, item) {
+	$("#time_" + start.getHours()).html(item.title);
+}
+function initmonth() {
+	var currentDate = $("#currentDateMonth").data("date");
+	if(!currentDate ) {
+		currentDate = new XDate();
+	}
+	var date = currentDate.clone();
+	date.setDate(1);
+	while(date.getDay()!=1) {
+		date.addDays(-1);
+	}
+	var start_of_next_month = false;
+	var week_num = 0;
+	var str_content = "";
+	while(!start_of_next_month) {
+		str_content+="<tr>"
+		for(var i = 0; i < 7; ++i) {
+			str_content+=("<td class=\"");
+			if(date.getDate() == 1 && week_num > 1) {
+				start_of_next_month = true;
+			}
+			if(date.getDate() >7 && week_num==0 ) {
+				str_content+="nonCurrentMonth\"";
+			} else if(date.getDate() <=7 && week_num>1) {
+				str_content+="nonCurrentMonth\"";
+			} else {
+				str_content+=("currentMonth\" id=\""+date.getDate()+"_month\"");
+				
+			}
+			
+			str_content+=(">"+date.getDate()+"</td>");
+			date.addDays(1);
+			
+			
+		}
+		str_content+="</tr>";
+		++week_num;
 
+	}
+
+	$("#monthtable").html(str_content);
+	$("#currentDateMonth").html(currentDate.toString('dddd, MMMM d, yyyy'));
+	$("#currentDateMonth").data( "date", currentDate);
+	
+	dbShell.transaction(function(tx) {
+		tx.executeSql("select id, title, body, start, end from events",[],
+			function(tx,results) {
+				 for(var i=0; i<results.rows.length; i++) {
+						var start = new XDate(results.rows.item(i).start);
+						var end = new XDate(results.rows.item(i).end);
+						if(currentDate.getFullYear() == start.getFullYear() &&
+							currentDate.getMonth() == start.getMonth() 
+							) {
+							$("#"+start.getDate()+"_month").addClass("hasEvent");
+							
+						}
+						
+				 }
+			},
+			dbErrorHandler);
+		}, dbErrorHandler);
+		
+		$(document).delegate('.currentMonth', 'click', function () {
+			var id  = $(this).attr('id');
+			id = parseInt(id);
+			var currentDate = $("#currentDateMonth").data("date");
+			currentDate.setDate(id);
+			$("#currentDate").html(currentDate.toString('dddd, MMMM d, yyyy'));
+			$("#currentDate").data( "date", currentDate);
+			$( "#calendarNavigation a img" ).removeClass('lighten');
+			$( "#calendarNavigation a img" ).addClass('darken');
+			$( "#calendarNavigation a#one_link img" ).removeClass('darken');
+			$( "#calendarNavigation a#one_link img" ).addClass('lighten');
+			showContent("one", ".calendar_content_div");
+		});
+
+
+}
+
+
+$(document).delegate('#month_calendar_back', 'click', function () {
+	var currentDate = $("#currentDateMonth").data("date");
+	currentDate.addMonths(-1);
+	$("#currentDateMonth").html(currentDate.toString('dddd, MMMM d, yyyy'));
+	$("#currentDateMonth").data( "date", currentDate);
+	//retrieveEvents(currentDate);
+	initmonth();
+});
+
+$(document).delegate('#month_calendar_forward', 'click', function () {
+	var currentDate = $("#currentDateMonth").data("date");
+	currentDate.addMonths(1);
+	$("#currentDateMonth").html(currentDate.toString('dddd, MMMM d, yyyy'));
+	$("#currentDateMonth").data( "date", currentDate);
+	//retrieveEvents(currentDate);
+	initmonth();
+});
 
 	/*
 $(document).delegate("#start, #end, #recurrence, #noteEvent", "focus", function() {
