@@ -1,0 +1,15 @@
+.fc-agenda-axis-allday{
+    font-size:16px;
+}
+
+.fc-agenda-body, .fc-view-agendaDay {
+    height:auto !important;
+}
+
+.fc-view-agendaDay .fc-agenda-days thead{
+    display :none;
+}
+
+.fc-widget-header.fc-agenda-axis.fc-agenda-axis-allday{
+    padding-right:3px;
+}

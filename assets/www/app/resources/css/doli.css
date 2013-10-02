@@ -1,0 +1,616 @@
+/*Utility */
+
+.loadingmask
+{
+	height:100%;
+	width:100%;
+	
+}
+/*
+.x-mask-inner 
+{
+	height:100%;
+	
+}*/
+/* Login Screen */
+.upperspacer
+{
+	height:50%;
+
+}
+.midspacer
+{
+	height:10px;
+}
+.loginscreen_imagelabel
+{
+  height:50%;
+  background-color:#000;
+  background-repeat:no-repeat;
+  width:100%;
+
+}
+.loginscreen_imagelabel_img
+{
+ 	height:inherit;
+  	width:inherit;
+}
+.loginscreen_panel
+{
+	background-color:#000;
+	height:50%;
+}
+.loginscreen_password 
+{
+	 margin-left:8%;
+	margin-right:8%;
+}
+.loginscreen_name
+{
+	margin-left:8%;
+	margin-right:8%;
+}
+
+.loginscreen_loginbtn{
+
+   margin-top:10px;
+   border-style:none;
+   height:13%;
+   margin-left:8%;
+   margin-right:8%;
+   background-size:100% 100%;
+   background-repeat:no-repeat;
+   background-color : white;
+   
+}
+
+.loginscreen_facebookbtn
+{
+   margin-top:10%;
+   height:13%;
+   background-image: url("../img/fb.png");
+   margin-left:8%;
+   margin-right:8%;
+   background-size:100% 90%;
+   background-repeat:no-repeat;
+   background-color : transparent;
+   border:0px;
+}
+.loginscreen_signup
+{
+	margin-top:10px;
+	height:13%;
+	margin-left:8%;
+	margin-right:8%;
+	background-color :white;
+
+}
+
+
+
+
+
+.diaryscreen
+{
+	background-image:url("../img/initial.png");
+	background-repeat:no-repeat;
+	height:100%;
+	width:100%;
+	background-size:100% 100%;
+	
+	
+}
+
+.homescreen
+{
+	background-image:url("../img/BG.png");
+	height:100%;
+	width:100%;
+	background-size:100% 100%;
+}
+.homescreen_toppanel
+{
+	height:13%;
+	
+	background-repeat:no-repeat;
+	background-position:center; 
+	width:100%;
+	margin-left: 0%;
+	background-size:40% 100%;
+	
+	
+}
+
+.homescreen_tabpanel
+{
+	height:100%;		
+	width:100%;
+
+}
+.homescreen_tabpanel_clientarea
+{
+	background-color:transparent;
+	width:100%;
+	height:100%;
+}
+.homescreen_tabpanel_toolbar.x-docked-right 
+{
+	width:25%;
+	
+}
+.homescreen_tabpanel_toolbar
+{
+	background-color:transparent;
+	background-image:none;
+}
+.homescreen_tabpanel_toolbar_notes
+{
+	background-image:url("../img/notes-tab.png");
+	height:100%;		
+	width:70%;
+	height:100px;		
+	background-size:100% 100%;
+	background-position:center; 
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.homescreen_tabpanel_toolbar_calender
+{
+	background-image:url("../img/Calendar-tab.png");
+	height:100px;			
+	width:70%;
+	background-size:100% 100%;
+	background-position:center; 
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.homescreen_tabpanel_toolbar_picture
+{
+	background-image:url("../img/pictures-tab.png");
+	height:100px;		
+	width:70%;
+	background-size:100% 100%;
+	background-position:center; 
+	margin-bottom:10px;
+	margin-left:10px;
+	margin-top:150px;
+}
+
+.imagegallery
+{
+	
+	background-size:100% 100%;
+	height:100%;
+	width:100%;
+}
+.events
+{
+	
+	background-size:100% 100%;
+	height:100%;	
+	width:100%;
+}
+.notes
+{
+	background-color:transparent;
+	background-size:100% 100%;
+	height:100%;	
+	width:100%;
+}
+#photos {
+	/* Prevent vertical gaps */
+	line-height: 0;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 0px;
+	margin: 10px 10px 0 15px;
+}
+ 
+#photos img {
+	width: 95% !important;
+	height: auto !important;
+	margin: 0px 0px 10px 0px;
+	border: 2px solid rgba(0,0,0,0.4);
+	border-radius: 5px;
+	padding: 5px;
+	background: rgba(0,0,0,0.5);
+}
+
+
+
+
+/*********************** Gallery Carousel *************************/
+ 
+.gallery-carousel {
+	z-index: 20;
+	background: rgba(0,0,0,0.7);
+}
+ 
+.gallery-item {
+	max-width: 100%;
+}
+ 
+.gallery-carousel .x-carousel-item .x-innerhtml {
+	height: 100% !important;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+}
+ 
+.gallery-carousel .x-carousel-indicator-dark span {
+	background-color: rgba(255,255,255,0.3) !important;
+}
+ 
+.gallery-carousel .x-carousel-indicator-dark span.x-carousel-indicator-active {
+	background-color: rgba(255,255,255,1) !important;
+}
+ 
+.gallery-carousel .close-gallery {
+	position: absolute;
+	-webkit-mask-image: url(../img/close.png);
+	-webkit-mask-repeat: no-repeat;
+	background: #fff;
+	-webkit-mask-size: 32px;
+	height: 50px;
+	width: 50px;
+	margin: 10px;
+	right: 0;
+}
+ 
+.gallery-carousel .x-carousel-item .x-innerhtml {
+	text-align: center;
+}
+ 
+.gallery-carousel .item {
+	max-width: 100%;
+	max-height: 100%;
+}
+ 
+.gallery-carousel .nav {
+	-webkit-mask: url(../img/arrow.png) no-repeat;
+	background: #fff;
+	min-width: 16px;
+	min-height: 16px;
+	-webkit-mask-position: 12px 6px;
+}
+ 
+.gallery-carousel .gallery-left {
+	-webkit-transform: rotate(180deg);
+}
+ 
+.gallery-carousel .gallery-right {
+}
+ 
+.gallery-carousel .gallery-bottombar .x-title {
+	font-size: 14px !important;
+	color: #fff;
+}
+ 
+ 
+/*********************** Gallery Carousel ENDS *************************/
+.imagelistview
+{
+	height: 82%;
+	width:100%;
+	background-color:transparent;
+}
+.imagelistview_imagediv
+{
+	  height:200px;
+	  width:90%;
+	  border-style:solid;
+	  border-width:5px;
+	  border-color:#7F5217;
+	  
+	 
+}
+.imagelistview_comment
+{
+	align:center;
+	color:white;
+	margin-left: 10%;
+	margin-right: 20%;
+	width:80%;
+	font-size:18px;
+	margin-top:8%;
+	text-transform: capitalize;
+
+}
+.imagelistview_item
+{
+	  height:300px;	
+	  width:100%;
+	 
+}
+.imagelistview_date
+{
+	color: #64DB81;
+	margin-top:3%;
+	font-size:14px;
+	margin-left: 10%;
+	margin-right: 10%;
+	width:80%;
+	font-weight:bold;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.imagedetialpopup
+{
+
+	width: 94%;
+	height: 95%;
+}
+imagedetialpopup.x-panel.x-floating, .imagedetialpopup .x-panel-inner {
+     background-color:#7F5217 !important;
+     background-image:none;
+}
+.imagedetialpopup_imageview
+{
+	height: 60%;
+	width: 96%;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #F19215;
+	margin-left: 2%;
+	margin-right: 2%;
+	top: 3%;
+	position: relative;
+	  
+	 
+}
+.imagedetialpopup_imageview_div
+{
+	 margin:0%;
+	 border-width:5px;
+	 border-color:#7F5217;
+	 border-style:solid;
+	 
+}
+.imagedetialpopup_commentfield
+{
+	 width:90%;
+	 border-style:solid;
+	 border-width:3px;
+	 margin-top:5%;
+	 margin-left:5%;
+	 margin-right:5%;
+	 margin-bottom:5%;
+	 font-size:13px;
+	 height:10%;
+	 min-height: 0em !important;
+	 text-transform: capitalize;
+}
+
+.imagedetialpopup_closebtn 
+{
+	height:8%;
+	margin-left:6%;
+	margin-right:6%;
+}
+.imagedetialpopup_date
+{
+	color: #64DB81;
+	margin-left:5%;
+	margin-right:5%;
+	margin-top: 10%;
+	text-transform: capitalize;
+	font-style: italic;
+	
+}
+
+.imagegallery_capturebtn
+{
+	margin:5%;
+	background-color:#7F5217;
+	background-image:none;
+}
+.imagegallery_capturebtn_imgdiv
+{
+	float:left;
+}
+
+.imagegallery_capturebtn_text
+{
+	float: left;
+	font-size: 76%;
+	margin-top: 5%;
+	margin-left: 5%;
+	color:white;
+}
+
+/*NOTES */
+
+.notes_takenote
+{
+	margin:5%;
+	background-color:#7F5217;
+	background-image:none;
+}
+.notelistview
+{
+	height: 82%;
+	width:100%;
+	background-color:transparent;
+}
+.notelistview_item
+{
+	  height:20%;	
+	  width:100%;
+	  
+}
+.notelistview_itemCls
+{
+	background-color:#7F5217;
+}
+.takenotepopup
+{
+	width: 100%;
+	height: 100%;
+	
+}
+
+.noteslistview_subject
+{
+	align:center;
+	color:white;
+	margin-left: 10%;
+	margin-right: 20%;
+	width:80%;
+	font-size:18px;
+	margin-top:8%;
+	text-transform: capitalize;
+	text-overflow: ellipsis;
+	overflow: hidden;
+
+}
+
+takenotepopup.x-panel.x-floating, .takenotepopup .x-panel-inner {
+     background-color:#7F5217 !important;
+     background-image:none;
+}
+.note_container
+{
+	margin-left:5%;
+	margin-right:5%;
+	position:relative;
+	top:0%;
+	
+}
+.notetoolbar
+{
+	height: 20%;
+	background-color:transparent !important;
+	position: relative;
+	top: 2%;
+}
+.notesubjectetextfield
+{
+	height: 30%;
+	margin-bottom:10%;
+}
+.notetitletextfield
+{
+}
+.notetitlelabel ,.notesubjectlabel
+{
+	margin-bottom:1%;
+	font-weight:bold;
+	color:rgb(216, 208, 22);
+	margin-top: 5%;
+	font-style:oblique;
+}
+.note_closebtn
+{
+	height:30%;
+}
+.notesubjectetextfield .x-input-el , .notetitletextfield .x-input-el
+{
+	background-color: rgb(240, 240, 130);
+}
+.note_cancelbtn
+{
+	margin-top:5%;
+}
+.signup_container_panel
+{
+	margin:5%;
+	position:relative;
+	
+}
+.signupscreen
+{
+
+	background-image:url("../img/BG.png");
+	height:100%;
+	width:100%;
+	background-size:100% 100%;
+
+}
+
+.marginbottom5
+{
+	margin-bottom:5%;
+
+}
+.signup_signuplabel
+{
+	color:white;
+
+}
+
+.fullcalendarpanel
+{
+
+	height: 75%;
+	width: 100%;
+	
+}
+.events_buttonbar
+{
+	height: 9%;
+	margin-top: 10%;
+	margin-left: 0%;
+	margin-right: 0%;
+	background-image: none;
+	background-color: red;
+}
+.calender_month
+{
+	background-image: url("../img/month.jpg");
+	background-size: 100% 100%;
+	height: 100%;
+	width:100%;
+	background-repeat:no-repeat;
+}
+.calender_week
+{
+	background-image: url("../img/days.jpg");
+	background-size: 100% 100%;
+	height: 100%;
+	width:100%;
+	background-repeat:no-repeat;
+}
+.calender_day
+{
+	background-image: url("../img/one.jpg");
+	background-size: 100% 100%;
+	height: 100%;
+	width:100%;
+	background-repeat:no-repeat;
+}
+.segmented_panel
+{
+	width: 66%;
+	margin-bottom: 12%;
+}
+.createeventpanel
+{
+	margin-left:5%;
+	margin-right:5%;
+}
+
+.createevent
+{
+	background-color:#7F5217;
+}
+.event_closebtn
+{
+	height:50px;
+	width:40%;
+	margin-left:5%;
+	margin-right:2.5%;
+	
+	
+}
+.event_cancelbtn
+{
+ 	height:50px;
+	width:40%;
+	margin-right:5%;
+	margin-left:2.5%;
+	
+
+}
+.event_buttonpanel
+{
+	width:100%;
+}

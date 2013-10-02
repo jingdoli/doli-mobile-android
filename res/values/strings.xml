@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Doli Diaries</string>
+    <string name="lblCapturar">Capture</string>
+    <string name="lblCancelar">Cancel</string>
+</resources>
