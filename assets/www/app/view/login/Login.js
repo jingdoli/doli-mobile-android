@@ -45,7 +45,7 @@ Ext.define("doli.view.login.Login",{
 					}, {
 						xtype : 'button',
 						text : 'Login',
-						 ui  : 'confirm',
+						ui  : 'confirm',
 						cls : 'loginscreen_loginbtn',
 						itemId : 'loginscreen_loginbtn',
 						
