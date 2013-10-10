@@ -90,6 +90,13 @@ Ext.define("doli.util.DBUtils",{
 		});
 		
 	},// saveNote
+	
+	deleteNotes:function(id){
+		
+		DBUtils.db.transaction(function(tx){
+		  tx.executeSql('Delete FROM notes where id='+id);
+		},DBUtils.dbError);
+	},
 	getAllNotes:function(callback){
 		DBUtils.db.transaction(function(tx){
 		tx.executeSql('SELECT * FROM notes', [],

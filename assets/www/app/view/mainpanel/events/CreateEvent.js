@@ -40,6 +40,7 @@ Ext.define("doli.view.mainpanel.events.CreateEvent",{
 					height:'30px',
 					cls:'notesubjectetextfield',
 					itemId:'event_startdatetimepicker',
+					value:new Date(),
 					
 					
 					
@@ -55,6 +56,7 @@ Ext.define("doli.view.mainpanel.events.CreateEvent",{
 					height:'30px',
 					cls:'notesubjectetextfield',
 					itemId:'event_enddatetimepicker',
+					value:new Date(),
 					
 					
 					

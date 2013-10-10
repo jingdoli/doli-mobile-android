@@ -29,7 +29,7 @@ Ext.define("doli.view.login.Login",{
 						placeHolder : 'Username / email ',
 						cls : 'loginscreen_name',
 						name : 'name',
-						//value:'testusermm21'
+						value:'mm'
 
 					}, {
 						xtype : 'spacer',
@@ -40,7 +40,7 @@ Ext.define("doli.view.login.Login",{
 						cls : 'loginscreen_password',
 						itemId : 'loginscreen_password',
 						placeHolder : 'Password',
-						//value:'testusermm21'
+						value:'password'
 
 					}, {
 						xtype : 'button',
@@ -58,6 +58,10 @@ Ext.define("doli.view.login.Login",{
 						cls : 'loginscreen_facebookbtn',
 						//html: '<img class="loginscreen_facebookbtn_img" src="img/fb_login_icon.png"/>',
 						itemId : 'loginscreen_facebookbtn',
+						handler:function(){
+	
+							FBUtils.login();
+						}
 
 					}, {
 						xtype : 'button',

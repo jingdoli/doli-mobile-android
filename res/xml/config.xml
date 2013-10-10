@@ -78,4 +78,6 @@ Doli Diaries
             name="Camera"
             value="com.foregroundcameraplugin.ForegroundCameraLauncher" />
       </plugins>
+      
+   <plugin name="org.apache.cordova.facebook.Connect" value="org.apache.cordova.facebook.ConnectPlugin" />
 </widget>

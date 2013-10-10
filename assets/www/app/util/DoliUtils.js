@@ -43,6 +43,7 @@ Ext.define("doli.util.DoliUtils",{
 		Ext.Ajax.request({
 		    url : SERVER.host_address,
 		    method : 'GET',
+		    timeout: 30000,
 		    headers : { Authorization : auth},
 		    success: function(response) {
 		    	DoliUtils.removeLoadingMask();
@@ -58,6 +59,8 @@ Ext.define("doli.util.DoliUtils",{
 				}
 		    },
 		    failure: function(response) {
+		    	//Testing purpose only 
+		    	DoliUtils.loginSuccess();
 		     DoliUtils.removeLoadingMask();
 		     //console.log(response);
 		     //console.log(response.status);

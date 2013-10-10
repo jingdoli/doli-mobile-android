@@ -2056,6 +2056,7 @@ function BasicWeekView(element, calendar) {
 		t.end = end;
 		t.visStart = visStart;
 		t.visEnd = visEnd;
+		t.detials="Hello world";
 		renderBasic(1, 1, weekends ? 7 : 5, false);
 	}
 	

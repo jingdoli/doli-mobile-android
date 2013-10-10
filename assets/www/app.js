@@ -24,5 +24,9 @@ Ext.application({
     	Ext.Viewport.add(loginscreen);
     	Ext.Viewport.setActiveItem(loginscreen);
     	
+    	FBUtils.initialize();
+    	
+    	
+    	
     }
 }); 

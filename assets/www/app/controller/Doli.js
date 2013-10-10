@@ -9,6 +9,8 @@ Ext.define("doli.controller.Doli",{
 	          "doli.store.notes.Notes",
 	          //Signup
 	          'doli.view.signup.Signup',
+	          //Facebook
+	          'doli.util.FBUtils',
 	         ],
 	init:function(){
 		/*
