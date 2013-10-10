@@ -27,7 +27,7 @@ Ext.define("doli.store.imagegallery.ImageGallery", {
                 ],
 		data:[
 		      
-//  		  { imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
+		  //{ imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
 //		      { imageurl:'app/resources/img/doli.png'},
 //		      { imageurl:'app/resources/img/doli.png'},

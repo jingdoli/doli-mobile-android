@@ -9,6 +9,7 @@ Ext.define('doli.model.imagegallery.ImageGallery', {
 		 { name: 'date',type: 'string' ,defaultValue:new Date().toString().substring(0,15)},
 		 { name: 'dateInt',type: 'int' ,defaultValue:new Date().getTime()},
 		
+		
 		],
 							
 	}

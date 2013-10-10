@@ -47,6 +47,7 @@ Ext.define("doli.controller.Doli",{
 		imagegallery_capturebtn:'imagegallery #imagegallery_capturebtn',
 		imagedetialpopup:'imagedetialpopup',
 		imagedetialpopup_closebtn:'imagedetialpopup #imagedetialpopup_closebtn',
+		imagedetialpopup_deletebtn:'imagedetialpopup #imagedetialpopup_deletebtn',
 		//Notes
 		notelistview:'notelistview',
 		notes:'notes',
@@ -129,6 +130,9 @@ Ext.define("doli.controller.Doli",{
 		signup_cancelbtn:{
 			tap:'signup_cancelbtnTap',
 		},
+		imagedetialpopup_deletebtn:{
+			tap:'imagedetialpopup_deletebtnTap',
+		},
 	
 	}//control
 	},//config
@@ -208,6 +212,31 @@ Ext.define("doli.controller.Doli",{
 		
 	},
 	takenotepopup_cancelbtntTap:function(){
+		if(DoliUtils.doliController.getTakenotepopup().getData() != null){
+			var data=DoliUtils.doliController.getTakenotepopup().getData();
+			var id=data.id;
+			
+			if(id != undefined || id !=null){
+				try{
+					DoliUtils.setLoadingMask("Deleting your"+data.subject +" Note...");
+					DBUtils.deleteNotes(id,this.takenotepopup_noteDeleted)
+				} catch (e) {
+					DoliUtils.removeLoadingMask();
+					Ext.Msg.alert("Error",e.message);
+					this.takenotepopup_noteDeleted();
+				}
+			}
+		} else {
+			Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });
+		}
+		
+		
+		
+		
+	},
+	
+	takenotepopup_noteDeleted:function(){
+		DBUtils.getAllNotes(DoliUtils.doliController.updateNotesListStore);
 		Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });
 	},
 	noteSaveSuccess:function(){
@@ -230,10 +259,16 @@ Ext.define("doli.controller.Doli",{
 	},
 	updateNotesListStore:function(data){
 		
-		 
-		 var store=Ext.getStore("store_notes");
-		 store.setData(data);
-		 DoliUtils.removeLoadingMask();
+		console.log("NOTE DATA" + data)
+		console.log(data)
+		var store=Ext.getStore("store_notes");
+	   
+		if(data.length == 0){
+			 store.setData(null);
+		} else {
+			 store.setData(data);
+		}
+		DoliUtils.removeLoadingMask();
 	
 	},
 	imagedetialpopup_closebtn_tap:function(){
@@ -349,6 +384,29 @@ Ext.define("doli.controller.Doli",{
 		//this.getSignup().hide();
 		
 	
+	},
+	
+	imagedetialpopup_deletebtnTap:function(){
+		var data=DoliUtils.doliController.getImagedetialpopup().getData();
+		var id=data.id;
+		
+		if(id != undefined || id !=null){
+			
+		try{
+			
+			DoliUtils.setLoadingMask("Deleting your " +data.comment+ " Picture");
+			DBUtils.deleteImages(id,this.imagedetialpopup_imageDeleted)
+		} catch (e) {
+			DoliUtils.removeLoadingMask();
+			Ext.Msg.alert("Error",e.message);
+			this.imagedetialpopup_imageDeleted();
+		}
+	}
+	},
+	imagedetialpopup_imageDeleted:function(){
+		DBUtils.getCameraGalleryData(CameraUtils.updateImageStore);
+		//DBUtils.getCameraGalleryData(DoliUtils.doliController.updateNotesListStore);
+		Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });
 	}
 	
 });//define

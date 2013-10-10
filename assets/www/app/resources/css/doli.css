@@ -336,8 +336,8 @@
 .imagedetialpopup
 {
 
-	width: 94%;
-	height: 95%;
+	width: 100%;
+	height: 100%;
 }
 imagedetialpopup.x-panel.x-floating, .imagedetialpopup .x-panel-inner {
      background-color:#7F5217 !important;
@@ -380,11 +380,18 @@ imagedetialpopup.x-panel.x-floating, .imagedetialpopup .x-panel-inner {
 	 text-transform: capitalize;
 }
 
-.imagedetialpopup_closebtn 
+.imagedetialpopup_donebtn 
 {
-	height:8%;
-	margin-left:6%;
-	margin-right:6%;
+	height:15%;
+	width:40%;
+	
+}
+.imagedetialpopup_deletebtn 
+{
+	height:15%;
+	width:40%;
+	margin-left:5%;
+	
 }
 .imagedetialpopup_date
 {
@@ -397,6 +404,13 @@ imagedetialpopup.x-panel.x-floating, .imagedetialpopup .x-panel-inner {
 	
 }
 
+.imagedetialpopup_btnpanel{
+
+	width:100%;
+	margin-left:5%;
+	margin-right:5%;
+
+}
 .imagegallery_capturebtn
 {
 	margin:5%;

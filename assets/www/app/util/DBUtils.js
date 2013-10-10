@@ -58,7 +58,13 @@ Ext.define("doli.util.DBUtils",{
      		 }, DBUtils.dbError);
 		},DBUtils.dbError);
 	},
-
+	deleteImages:function(id,callback){
+		
+		DBUtils.db.transaction(function(tx){
+		  tx.executeSql('Delete FROM imagegallery where id='+id);
+		  callback();
+		},DBUtils.dbError);
+	},
 	/**
 	 * NOTES DB OPERATION BEGINS
 	 */
@@ -91,10 +97,11 @@ Ext.define("doli.util.DBUtils",{
 		
 	},// saveNote
 	
-	deleteNotes:function(id){
+	deleteNotes:function(id,callback){
 		
 		DBUtils.db.transaction(function(tx){
 		  tx.executeSql('Delete FROM notes where id='+id);
+		  callback();
 		},DBUtils.dbError);
 	},
 	getAllNotes:function(callback){

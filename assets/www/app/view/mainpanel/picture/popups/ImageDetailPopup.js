@@ -64,7 +64,7 @@ Ext.define("doli.view.mainpanel.picture.popups.ImageDetailPopup",{
 				xtype:'button',
 				text:'Done',
 				ui:'confirm',
-				cls:"imagedetialpopup_closebtn",
+				cls:"imagedetialpopup_donebtn",
 				itemId:'imagedetialpopup_closebtn',
 //				handler:function(){
 //					
@@ -75,7 +75,24 @@ Ext.define("doli.view.mainpanel.picture.popups.ImageDetailPopup",{
 //				}
 		}
 		
-		this.add([imageview,date,commentTextField,closeBtn])
+		
+		var deleteBtn ={
+				
+				xtype:'button',
+				text: "Delete",
+				ui:'decline',
+				cls:"imagedetialpopup_deletebtn",
+				itemId:'imagedetialpopup_deletebtn',
+				
+				
+		}
+		var btnPanel={
+				xtype:'panel',
+				layout:'hbox',
+				cls:'imagedetialpopup_btnpanel',
+				items:[closeBtn,deleteBtn]
+		}
+		this.add([imageview,date,commentTextField,btnPanel])
 		
 	}
 	
