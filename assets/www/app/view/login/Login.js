@@ -9,15 +9,24 @@ Ext.define("doli.view.login.Login",{
 	extend : 'Ext.Panel',
 	alias : 'widget.loginscreen',
 	xtype:'loginscreen',
+	requires:['Ext.Video'],
 	config : {
 		cls : 'login',
 		items : [
 				{
-					xtype : 'label',
-					itemId : 'loginscreen_imagelabel',
+					xtype : 'panel',
 					cls : 'loginscreen_imagelabel',
-					html : '<div ><center><img class="loginscreen_imagelabel_img" src="app/resources/img/doli.png" ></img></center><div>' //
+					items:[{
+						xtype : 'video',
+						itemId : 'loginscreen_imagelabel',
+						
+						//fullscreen:true,
+						url:['app/resources/video/promo.mp4','app/resources/video/promo.webm'],
+						posterUrl:['app/resources/img/doli.png'],
+						//html : '<div ><center><img class="loginscreen_imagelabel_img" src="app/resources/img/doli.png" ></img></center><div>' //
 
+					}]
+					
 				},
 
 				{
