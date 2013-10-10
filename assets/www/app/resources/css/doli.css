@@ -24,16 +24,20 @@
 }
 .loginscreen_imagelabel
 {
-  height:50%;
-  background-color:#000;
-  background-repeat:no-repeat;
-  width:100%;
+  height:40%;
+  margin:5%;
+ 
+ 
 
+}
+.login{
+ 	background-color:#000;
 }
 .loginscreen_imagelabel_img
 {
  	height:inherit;
   	width:inherit;
+  	
 }
 .loginscreen_panel
 {
