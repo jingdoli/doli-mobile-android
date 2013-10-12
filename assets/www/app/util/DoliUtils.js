@@ -15,6 +15,7 @@ Ext.define("doli.util.DoliUtils",{
 	SPACE:"dolispace",
 	SUCCESS:1,
 	ERROR:0,
+	USER_PIC:'app/resources/img/user_nopic.png',
 	setLoadingMask:function(text){
 		var mask= {
 			        xtype: 'loadmask',
@@ -32,9 +33,22 @@ Ext.define("doli.util.DoliUtils",{
 	removeLoadingMask:function(){
 		Ext.Viewport.setMasked(false);
 	},
-	
-	loginService:function(username,password){
+	logoutService:function(){
+		DoliUtils.mixpanelTrack('Logout')
+		DoliUtils.setLoadingMask("Logging Out...");
+		Ext.ComponentQuery.query("loginscreen")[0].destroy();
+		setTimeout(function(){
+			var login=l=Ext.create("doli.view.login.Login");
+			Ext.Viewport.setActiveItem(login);
+			
+		},1000);
 		
+	
+		
+		
+	},
+	loginService:function(username,password){
+		DoliUtils.mixpanelTrack('Login Attempted')
 		DoliUtils.setLoadingMask("Login in progress...");
 		var tok = username + ':' + password;
 		var hash = Base64.encode(tok);
@@ -46,12 +60,14 @@ Ext.define("doli.util.DoliUtils",{
 		    timeout: 30000,
 		    headers : { Authorization : auth},
 		    success: function(response) {
+		    	//mixpanel.track("Login Success")
 		    	DoliUtils.removeLoadingMask();
 		    	var text = response.responseText;
 				var data = JSON.parse(text);
 				if(data.objects[0].key !== undefined){
 					SERVER.auth_token=data.objects[0].key;
 					//alert(data.objects[0].key);
+					localStorage.setItem("username",username);
 					DoliUtils.loginSuccess();
 				} else {
 					
@@ -59,8 +75,12 @@ Ext.define("doli.util.DoliUtils",{
 				}
 		    },
 		    failure: function(response) {
-		    	//Testing purpose only 
+		    
+		    	//Testing purpose only  #####################################
 		    	DoliUtils.loginSuccess();
+		    	localStorage.setItem("username",username);
+		    	DoliUtils.mixpanelTrack("Login Failure")
+		    	//Testing purpose only #####################################
 		     DoliUtils.removeLoadingMask();
 		     //console.log(response);
 		     //console.log(response.status);
@@ -69,10 +89,10 @@ Ext.define("doli.util.DoliUtils",{
 		     	
 		        Ext.Msg.alert("Server Error","Check username password / Internet connection");
 		    	// Testing Only
-		    	DoliUtils.loginSuccess();
+		    	//DoliUtils.loginSuccess();
 		    	
 		     } else {
-		    	 Ext.Msg.alert("Error",response.responseText);
+		    	 Ext.Msg.alert("Error "+response.responseText);
 		     }
 		    
 		      
@@ -82,9 +102,21 @@ Ext.define("doli.util.DoliUtils",{
 	},//login service
 	
 	loginSuccess:function(){
+		DoliUtils.mixpanelIdentify();
+		/**
+		 *  Mixpanel Integration Login_Successful
+		 *
+		 */
+		DoliUtils.mixpanelTrack("Login Success")
 		Ext.Viewport.setMasked(false);
-		var diaryscreen=Ext.create('doli.view.diary.Dairy');
-		Ext.Viewport.add(diaryscreen);
+		var diaryscreen;
+		if(DoliUtils.doliController.getDiaryscreen() === undefined){
+			diaryscreen=Ext.create('doli.view.diary.Dairy');
+			Ext.Viewport.add(diaryscreen);
+		} else {
+			diaryscreen=DoliUtils.doliController.getDiaryscreen();
+		}
+		
 		Ext.Viewport.animateActiveItem(diaryscreen,{type: 'slide', direction: 'left',duration:500 });
 		
 	},
@@ -161,25 +193,34 @@ Ext.define("doli.util.DoliUtils",{
 						headers: AUTH_HEADER,
 						write: 'json',
 						success: function(response) {
-						  DoliUtils.removeLoadingMask()
+							/**
+							 * Mixpanel Integrastion 
+							 * 
+							 */
+							//alert("S:"+response.status)
+							
+							DoliUtils.setUserProfile(email,username);
+							DoliUtils.mixpanelTrack('sign up')
+							localStorage.setItem("username",username);
+							localStorage.setItem("email",email);
+							DoliUtils.removeLoadingMask()
 							Ext.Msg.alert("Welcome to Doli Diaries" , "Your account succesfully created.");
 							Ext.Viewport.animateActiveItem(DoliUtils.doliController.getLoginscreen(),{type: 'slide', direction: 'down',duration:1000 });
 						},
 						failure:function(response){
-						
+							//alert("E:"+response.status)
 							DoliUtils.removeLoadingMask()
 							 if(response.status === 0){
 		    	  				Ext.Msg.alert("Not able to contact server","Check if you are connected to Internet");
 		    					//DoliUtils.loginSuccess();
 		     				 } else {
-		     				 
-		     				 		if(response.responseText.indexOf("already exists") && response.responseText.indexOf("username")){
-		     				 		
-		     				 			Ext.Msg.alert("Error","This Username is already taken, please try with other.");
-		     				 		} else {
-		     				 			 Ext.Msg.alert("Error",response.responseText);
-		     				 		}
-		    					
+		     					 
+		     					 if(response.status == 400)
+		     				 	 {
+		     						DoliUtils.mixpanelTrack('signup-User_Exists_Already')
+		     						Ext.Msg.alert("Error","This Username/email  is already taken, please try with other.");
+		     				 	
+		     				 	 }
 		    				 }
 						}
 					});
@@ -187,5 +228,36 @@ Ext.define("doli.util.DoliUtils",{
 
 
 	},
+	
+	mixpanelTrack:function(key){
+		
+		var val={
+				 "id":localStorage.getItem("username")
+		}
+		
+		mixpanel.track(key,val)
+		
+	},
 
+	mixpanelIdentify:function(){
+		var user=localStorage.getItem("username");
+		mixpanel.identify(user);
+	},
+	getCurrentUser:function(){
+		var user=localStorage.getItem("username");
+		return user;
+	},
+	
+	setUserProfile:function(email,username){
+		DoliUtils.mixpanelIdentify();
+		mixpanel.people.set({
+		    "$email": email,    // only special properties need the $
+		    "username":username,
+		    "First name": username,
+		    "$created": "2011-03-16 16:53:54",
+		    "$last_login": new Date(), 
+		    "$id":DoliUtils.getCurrentUser()  // properties can be dates...
+		    
+		});
+	}
 });

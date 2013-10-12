@@ -21,7 +21,7 @@ Ext.define("doli.view.login.Login",{
 						itemId : 'loginscreen_imagelabel',
 						
 						//fullscreen:true,
-						url:['app/resources/video/promo.mp4','app/resources/video/promo.webm'],
+						url:['app/resources/video/promo.mp4'],
 						posterUrl:['app/resources/img/doli.png'],
 						//html : '<div ><center><img class="loginscreen_imagelabel_img" src="app/resources/img/doli.png" ></img></center><div>' //
 
@@ -38,7 +38,12 @@ Ext.define("doli.view.login.Login",{
 						placeHolder : 'Username / email ',
 						cls : 'loginscreen_name',
 						name : 'name',
-						value:'mm'
+						listeners:{
+							activate:function(self,eOpts){
+								self.setValue(DoliUtils.getCurrentUser());
+							}
+						}
+						//value:DoliUtils.getCurrentUser(),
 
 					}, {
 						xtype : 'spacer',
@@ -49,7 +54,8 @@ Ext.define("doli.view.login.Login",{
 						cls : 'loginscreen_password',
 						itemId : 'loginscreen_password',
 						placeHolder : 'Password',
-						value:'password'
+						//value:'password'
+						
 
 					}, {
 						xtype : 'button',

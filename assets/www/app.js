@@ -1,13 +1,15 @@
 Ext.application({
     name: "doli",
+    controllers:['Doli'],
     views:['login.Login','diary.Dairy','mainpanel.HomeScreen',
+           'profile.Profile',
            'mainpanel.picture.ImageGallery','mainpanel.picture.ImageListView','mainpanel.picture.popups.ImageDetailPopup',  // 'mainpanel.picture.GalleryCarousel',
            'mainpanel.notes.NoteListView','mainpanel.notes.Notes','doli.view.mainpanel.notes.popups.TakeNotePopup',
            'mainpanel.events.Events','mainpanel.events.FullCalender','mainpanel.events.CreateEvent',
            'signup.Signup',
            
           ],
-    controllers:['Doli'],
+    
     stores:['imagegallery.ImageGallery','doli.store.notes.Notes','events.Events'],
 //    startupImage: {
 //    	'320x460': 'resources/startup/splash.png',
@@ -19,12 +21,12 @@ Ext.application({
 //        '1496x2048': 'resources/startup/splash.png'
 //    },
     launch: function () {
+    	mixpanel.track("Application Launched")
     	navigator.splashscreen.hide();
     	var loginscreen=Ext.create("doli.view.login.Login");
     	Ext.Viewport.add(loginscreen);
     	Ext.Viewport.setActiveItem(loginscreen);
-    	
-    	FBUtils.initialize();
+    	//FBUtils.initialize();
     	
     	
     	

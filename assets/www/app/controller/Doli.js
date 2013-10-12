@@ -83,6 +83,9 @@ Ext.define("doli.controller.Doli",{
 		loginscreen_loginbtn:{
 			tap:'loginbtn_tap',
 		},
+		loginscreen:{
+			activate:'loginscreen_activate',
+		},
 		loginscreen_signup:{
 			tap:'loginscreen_signupTap'
 		},
@@ -136,6 +139,9 @@ Ext.define("doli.controller.Doli",{
 	
 	}//control
 	},//config
+	loginscreen_activate:function(){
+		DoliUtils.removeLoadingMask();
+	},
 	loginbtn_tap:function(){
 		
 		console.log("Login service called")
@@ -158,10 +164,27 @@ Ext.define("doli.controller.Doli",{
 		Ext.Viewport.animateActiveItem(signup,{type: 'slide', direction: 'up',duration:900 });
 	},
 	diaryscreen_tap:function(){
+		//alert('con')
+		DoliUtils.setLoadingMask("Your Doli Diary is Opening ...")
+		var homeScreen;
+		
+			if(DoliUtils.doliController.getHomescreen() === undefined){
+				//alert('undeifede')
+			
+				homeScreen=Ext.create('doli.view.mainpanel.HomeScreen');
+				Ext.Viewport.add(homeScreen);
+			
+			} else {
+				//alert('defined')
+				homeScreen=DoliUtils.doliController.getHomescreen();
+			}
+			
+			Ext.Viewport.animateActiveItem(homeScreen,{type: 'slide', direction: 'left',duration:500 });
+			
+		
+		
+		
 	
-		var homeScreen=Ext.create("doli.view.mainpanel.HomeScreen");
-		Ext.Viewport.add(homeScreen);
-		Ext.Viewport.animateActiveItem(homeScreen,{type: 'slide', direction: 'left',duration:900 });
 		
 		
 	},//diaryscreenbtn_tap
@@ -188,6 +211,7 @@ Ext.define("doli.controller.Doli",{
 	},//notelistview_itemtapped
 	notes_takenotebtn_tap:function(){
 //		DoliUtils.getRequiredClass("doli.view.mainpanel.notes.popups.TakeNotePopup");
+		DoliUtils.mixpanelTrack("Note Viewed")
 		this.destroyTakeNotePanel();
 		var notepaopup=Ext.create("doli.view.mainpanel.notes.popups.TakeNotePopup");
 		Ext.Viewport.add(notepaopup);
@@ -197,7 +221,7 @@ Ext.define("doli.controller.Doli",{
 	},
 	
 	takenotepopup_SaveBtnTap:function(){
-		
+		var data=DoliUtils.doliController.getTakenotepopup().getData();
 		var subject=DoliUtils.mapSpecialChars(this.getNotetitletextfield().getValue());
 		if(subject.length  <= 0 || subject === "" || subject===undefined ){
 			alert("Title is Mandatory !!!");
@@ -207,7 +231,14 @@ Ext.define("doli.controller.Doli",{
 			var date=new Date();
 			var dateNew=DoliUtils.mapSpecialChars(date.toString().substring(0,15));
 		    var dateInt=date.getTime();
-			DBUtils.saveNote(subject,note,dateNew,dateInt,this.noteSaveSuccess);
+		    if(data == null ){
+		    	console.log("INSERT CALLED")
+		    	DBUtils.saveNote(undefined,subject,note,dateNew,dateInt,this.noteSaveSuccess);
+		    } else {
+		    	DoliUtils.mixpanelTrack("Note Update")
+		    	DBUtils.saveNote(data.id,subject,note,dateNew,dateInt,this.noteSaveSuccess);
+		    }
+			
 			}
 		
 	},
@@ -240,6 +271,7 @@ Ext.define("doli.controller.Doli",{
 		Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });
 	},
 	noteSaveSuccess:function(){
+		DoliUtils.mixpanelTrack("Notes Created")
 		//Firing activate on view to fetch saved data from DB and add in list
 		DBUtils.getAllNotes(DoliUtils.doliController.updateNotesListStore);
 		Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });
@@ -332,7 +364,7 @@ Ext.define("doli.controller.Doli",{
 	},
 	
 	eventSaveSuccess:function(){
-		
+		DoliUtils.mixpanelTrack("Event Created")
 		DBUtils.getAllEvents(DoliUtils.doliController.updateEventStores);
 		
 	},
@@ -379,7 +411,7 @@ Ext.define("doli.controller.Doli",{
 	
 	},//
 	signup_cancelbtnTap:function(){
-	
+		DoliUtils.mixpanelTrack("SignUp Cancelled")
 		Ext.Viewport.animateActiveItem(this.getLoginscreen(),{type: 'slide', direction: 'down',duration:1000 });
 		//this.getSignup().hide();
 		
@@ -387,6 +419,7 @@ Ext.define("doli.controller.Doli",{
 	},
 	
 	imagedetialpopup_deletebtnTap:function(){
+		DoliUtils.mixpanelTrack("CaptureImage Deleting")
 		var data=DoliUtils.doliController.getImagedetialpopup().getData();
 		var id=data.id;
 		
@@ -404,6 +437,7 @@ Ext.define("doli.controller.Doli",{
 	}
 	},
 	imagedetialpopup_imageDeleted:function(){
+		DoliUtils.mixpanelTrack("CaptureImage Deleted")
 		DBUtils.getCameraGalleryData(CameraUtils.updateImageStore);
 		//DBUtils.getCameraGalleryData(DoliUtils.doliController.updateNotesListStore);
 		Ext.Viewport.animateActiveItem(DoliUtils.doliController.getHomescreen(),{type: 'slide', direction: 'down',duration:1000 });

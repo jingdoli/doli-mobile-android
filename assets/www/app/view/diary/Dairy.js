@@ -7,6 +7,8 @@ Ext.define("doli.view.diary.Dairy", {
 
 		 listeners: {
 	            tap: function() {
+	            	//alert('inline')
+	            	//DoliUtils.setLoadingMask("Opening your Diary ...")
 	            	DoliUtils.doliController.diaryscreen_tap();
 	            },
 	            element: 'element'

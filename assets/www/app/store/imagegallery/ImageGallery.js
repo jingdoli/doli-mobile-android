@@ -16,7 +16,14 @@ Ext.define("doli.store.imagegallery.ImageGallery", {
 		 grouper: {
              sortProperty: 'group_index',
              groupFn: function(record) {
-                 return record.get('date') + ':';
+            	 
+            	 try{
+            		 var  date12=record.get('date');
+                     return new Date(date12).toGMTString()
+            	 } catch (e) {
+            		 return record.get('date');
+				}
+            	
              }
          },
          sorters: [
@@ -27,7 +34,7 @@ Ext.define("doli.store.imagegallery.ImageGallery", {
                 ],
 		data:[
 		      
-		  //{ imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
+		 { imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
 //		      { imageurl:'app/resources/img/doli.png'},
 //		      { imageurl:'app/resources/img/doli.png'},

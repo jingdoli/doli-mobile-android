@@ -74,7 +74,7 @@ Ext.define("doli.util.DBUtils",{
 	createNoteTable:function(tx){
 		tx.executeSql('CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY,subject,note,date,dateInt)');
 	},
-	saveNote:function(subject,note,date,dateInt,callback){
+	saveNote:function(id,subject,note,date,dateInt,callback){
 		var subject1='"'+subject+'",';
 		var note1='"'+note+'",';
 		var dat='"'+date+'",';
@@ -82,12 +82,18 @@ Ext.define("doli.util.DBUtils",{
 		
 		
 		DBUtils.db.transaction(function(tx){
-			var query='INSERT INTO notes (subject,note,date,dateInt) VALUES('+ subject1 + note1 + dat + datInt+')';
-			tx.executeSql(query); 
+			if(id == undefined){
+				var query='INSERT INTO notes (subject,note,date,dateInt) VALUES('+ subject1 + note1 + dat + datInt+')';
+				tx.executeSql(query); 
+			} else {
+				tx.executeSql("update notes set subject=?, note=?, date=? , dateInt=?  where id=?",[subject,note, date, dateInt,id]);
+			}
+			
 		},
 		// Error Callback
 		function(err){ 
 			Ext.Msg.alert("DB Error",err.message);
+			console.log(err)
 			callback();
 		},
 		// Success Callback
@@ -96,11 +102,12 @@ Ext.define("doli.util.DBUtils",{
 		});
 		
 	},// saveNote
-	
+
 	deleteNotes:function(id,callback){
 		
 		DBUtils.db.transaction(function(tx){
 		  tx.executeSql('Delete FROM notes where id='+id);
+		  DoliUtils.mixpanelTrack("Note Deleted")
 		  callback();
 		},DBUtils.dbError);
 	},

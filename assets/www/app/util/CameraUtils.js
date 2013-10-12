@@ -18,12 +18,38 @@ Ext.define("doli.util.CameraUtils",{
 		
 		);
 	},
+	getProfilePic:function(){
+		DoliUtils.mixpanelTrack("Profile Edit")
+		navigator.camera.getPicture(CameraUtils.profilePicSuccess, CameraUtils.profilePicError, 
+				{ 
+				  quality: 70,
+		          targetWidth: 800,
+		          targetHeight: 600,
+		          destinationType: Camera.DestinationType.FILE_URI ,
+		          saveToPhotoAlbum : true,
+		         }
+		
+		
+		
+		);
+	},
+	profilePicSuccess:function(imageData){
+		DoliUtils.mixpanelTrack("Profile Photo Captured ")
+		alert(imageData)
+		localStorage.setItem("userpic",imageData);
+		document.getElementById("user_label_img").src=localStorage.getItem("userpic");
+	},
+	profilePicError:function(message){
+		Ext.Msg.alert("Error"+message)
+		
+	},
 	cameraSuccess:function(imageData){
 		try{
 			 var comment=prompt("Add a comment to this pic");
 			 if (comment === null){
 				 comment="No Comments Given";
 			 }
+			DoliUtils.mixpanelTrack("Photo Captured ")
 		    // imageData : Gives back the file location of the image
 		    var imageRecord =new Object();
 		    imageRecord.comment=comment;
@@ -39,6 +65,7 @@ Ext.define("doli.util.CameraUtils",{
    		    //alert(imageRecord.imageurl)
 		} catch (e) {
 			alert("cameraSuccess-Error"+e.message)
+			DoliUtils.mixpanelTrack("Photo Captured cancelled ")
 		}
 		
 	},
@@ -55,8 +82,18 @@ Ext.define("doli.util.CameraUtils",{
 		DBUtils.getCameraGalleryData(CameraUtils.updateImageStore);
 	},
 	updateImageStore:function(dataarray){
-		var store=Ext.getStore("store_imagegallery");
-		store.setData(dataarray);
+		try {
+			var store=Ext.getStore("store_imagegallery");
+			if(dataarray.length == 0){
+				 store.setData(null);
+			} else {
+				store.setData(dataarray);
+			}
+			DoliUtils.removeLoadingMask();
+		} catch (e) {
+			// TODO: handle exception
+		}
+		
 	}
 	
 });

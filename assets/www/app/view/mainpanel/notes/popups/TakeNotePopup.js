@@ -18,6 +18,7 @@ Ext.define("doli.view.mainpanel.notes.popups.TakeNotePopup",{
 		
 		var panel=this;
 		var data= this.getData();
+		data == null ? DoliUtils.mixpanelTrack("Taking Note") : DoliUtils.mixpanelTrack("Note Viewed");
 //		/alert(data);
 		var notetoolbar={
 			xtype:'label',
