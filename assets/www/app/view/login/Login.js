@@ -85,7 +85,14 @@ Ext.define("doli.view.login.Login",{
 						//html: '<img class="loginscreen_facebookbtn_img" src="img/fb_login_icon.png"/>',
 						itemId : 'loginscreen_signup',
 
-					}, ],
+					},
+					
+					{
+						xtype:'label',
+						html:'<div class="version_tag"><center> &copy; 2013 Doli Diaries , Beta v 0.1</center></div>'
+					}
+					
+					],
 				}
 
 		],
