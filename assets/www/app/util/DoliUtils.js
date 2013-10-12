@@ -60,6 +60,7 @@ Ext.define("doli.util.DoliUtils",{
 		    timeout: 30000,
 		    headers : { Authorization : auth},
 		    success: function(response) {
+		    	//alert("s"+response.status);
 		    	//mixpanel.track("Login Success")
 		    	DoliUtils.removeLoadingMask();
 		    	var text = response.responseText;
@@ -75,22 +76,17 @@ Ext.define("doli.util.DoliUtils",{
 				}
 		    },
 		    failure: function(response) {
-		    
+		    	//alert("F"+response.status);
 		    	//Testing purpose only  #####################################
-		    	DoliUtils.loginSuccess();
+		    	//DoliUtils.loginSuccess();
 		    	localStorage.setItem("username",username);
 		    	DoliUtils.mixpanelTrack("Login Failure")
 		    	//Testing purpose only #####################################
-		     DoliUtils.removeLoadingMask();
+		        DoliUtils.removeLoadingMask();
 		     //console.log(response);
 		     //console.log(response.status);
-		     if(response.status == 0){
-		     		
-		     	
-		        Ext.Msg.alert("Server Error","Check username password / Internet connection");
-		    	// Testing Only
-		    	//DoliUtils.loginSuccess();
-		    	
+		     if(response.status == 401){
+		    	Ext.Msg.alert("Authentication Failed","Check your username/password");
 		     } else {
 		    	 Ext.Msg.alert("Error "+response.responseText);
 		     }

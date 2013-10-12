@@ -32,7 +32,8 @@ Ext.define("doli.view.profile.Profile",{
 		        	        	items:[
 		        	        	       {
 		        	        	    	   xtype:'button',
-		        	        	    	   text:'click',
+		        	        	    	   text:'Change Picture',
+		        	        	    	   ui: 'round',
 		        	        	    	   cls:'profile_click_btn',
 		        	        	    	   handler:function(){
 		        	        	    		   try{
@@ -44,19 +45,19 @@ Ext.define("doli.view.profile.Profile",{
 		        	        	    		   
 		        	        	    	   }
 		        	        	       },
-		        	        	       {
-		        	        	    	   xtype:'button',
-		        	        	    	   cls:'profile_upload_btn',
-		        	        	    	   text:'upload',
-		        	        	    	   handler:function(){
-		        	        	    		   try{
-		        	        	    			  
-		        	        	    		   } catch (e) {
-		        	        	    			   Ext.Msg.alert("Error"+message)
-											}
-		        	        	    		   
-		        	        	    	   }
-		        	        	       }
+//		        	        	       {
+//		        	        	    	   xtype:'button',
+//		        	        	    	   cls:'profile_upload_btn',
+//		        	        	    	   text:'upload',
+//		        	        	    	   handler:function(){
+//		        	        	    		   try{
+//		        	        	    			  
+//		        	        	    		   } catch (e) {
+//		        	        	    			   Ext.Msg.alert("Error"+message)
+//											}
+//		        	        	    		   
+//		        	        	    	   }
+//		        	        	       }
 		        	        	       
 		        	        	]
 		        	        }
@@ -66,7 +67,7 @@ Ext.define("doli.view.profile.Profile",{
 		         
 		         {
 		        	 xtype:'label',
-		        	 html:"USERNAME :" +localStorage.getItem("username"),
+		        	 html:"<div class='profile_username'>USERNAME :" +localStorage.getItem("username")+"</div>",
 		         }
 		         
 			],

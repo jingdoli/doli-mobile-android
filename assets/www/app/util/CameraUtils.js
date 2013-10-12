@@ -35,7 +35,7 @@ Ext.define("doli.util.CameraUtils",{
 	},
 	profilePicSuccess:function(imageData){
 		DoliUtils.mixpanelTrack("Profile Photo Captured ")
-		alert(imageData)
+		//alert(imageData)
 		localStorage.setItem("userpic",imageData);
 		document.getElementById("user_label_img").src=localStorage.getItem("userpic");
 	},

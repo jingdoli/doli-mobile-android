@@ -170,8 +170,18 @@
 
 .profile_upload_btn , .profile_click_btn
 {
-	width:50%;
+	width:90%;
+	margin:5%;
+	height:15%;
+	background-image: none;
+	background-color: rgb(160, 88, 11);
+	font-family:"Times New Roman",Times,serif;
 
+}
+.profile_username
+{
+	margin:5%;
+	font-family:"Times New Roman",Times,serif;
 }
 .diaryscreen
 {
