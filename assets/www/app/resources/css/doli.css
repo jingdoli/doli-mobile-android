@@ -138,6 +138,13 @@
 	height: 100%;
 	background-size:90% 90%;
 }
+.version_tag
+{
+	color:white;
+	font-size: 70%;
+	margin-top: 11%;
+
+}
 .notetoolbar_div
 {
 	height:100%;
