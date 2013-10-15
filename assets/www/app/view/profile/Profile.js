@@ -67,12 +67,19 @@ Ext.define("doli.view.profile.Profile",{
 		         
 		         {
 		        	 xtype:'label',
+		        	 itemId:'profile_username',
 		        	 html:"<div class='profile_username'>USERNAME :" +localStorage.getItem("username")+"</div>",
 		         }
 		         
 			],
 			listeners:{
 				activate:function(self,eOpts){
+					try{
+						Ext.ComponentQuery.query("#profile_username").setValue(localStorage.getItem("username"));
+					} catch (e) {
+						// TODO: handle exception
+					}
+				
 					//localStorage.setItem("userpic","app/resources/img/test.png");
 					var userpic=localStorage.getItem("userpic");
 					if(userpic != null){

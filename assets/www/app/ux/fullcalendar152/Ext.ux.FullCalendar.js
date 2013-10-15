@@ -38,6 +38,7 @@ Ext.define('Ext.ux.FullCalendar', {
 	    		xtype:'button',
                 //text: 'Month',
 	    		iconCls:'calender_month',
+	    		 cls:'calender_top_toolbar_btn1',
                 //ui:'action',
                 //pressed: (me.getDefaultview() == "month") ? true : false,
                 handler:function(){
@@ -47,6 +48,7 @@ Ext.define('Ext.ux.FullCalendar', {
             	xtype:'button',
                 //text: 'Week',
                 iconCls:'calender_week',
+                cls:'calender_top_toolbar_btn1',
                 //ui:'action',
                 //pressed: (me.getDefaultview() == "agendaWeek") ? true : false,
                 handler: function(){
@@ -57,6 +59,7 @@ Ext.define('Ext.ux.FullCalendar', {
                 xtype:'button',
                 iconCls:'calender_day',
                 //ui:'action',
+                cls:'calender_top_toolbar_btn1',
                 //pressed: (me.getDefaultview() == "agendaDay") ? true : false,
                 handler: function(){
                     me.changeCalendarView('agendaDay');
@@ -67,13 +70,16 @@ Ext.define('Ext.ux.FullCalendar', {
 	me.bottomToolBar = Ext.create('Ext.Toolbar',{
 	    xtype: 'toolbar',
             docked: 'bottom',
+            cls:'calender_bottom_toolbar',
             items: [{
                 xtype: 'button',
                 iconMask: true,
                 ui: 'action',
+                cls:'calender_top_toolbar_btn1',
                 iconCls: 'arrow_left',
                 handler:function(){
-                    me.navigateCalendar('left');
+                	me.navigateCalendar('right');
+                   
                 }
             },{
                 xtype:'spacer'
@@ -82,10 +88,11 @@ Ext.define('Ext.ux.FullCalendar', {
             },{
                 xtype: 'button',
                 iconMask: true,
+                cls:'calender_top_toolbar_btn1',
                 ui: 'action',
                 iconCls: 'arrow_right',
                 handler:function(){
-                    me.navigateCalendar('right');
+                	 me.navigateCalendar('left');
                 }
             }]
         });
@@ -93,8 +100,10 @@ Ext.define('Ext.ux.FullCalendar', {
 	me.topToolBar = Ext.create('Ext.Toolbar',{
 		xtype : 'toolbar',
                 docked: 'top',
+                cls:'calender_top_toolbar',
                 items: [{
                     text: 'Today',
+                    cls:'calender_top_toolbar_btn1',
                     ui:'action',
                     handler: function(){
                        me.viewToday();
@@ -104,7 +113,7 @@ Ext.define('Ext.ux.FullCalendar', {
 	
 	;
 	me.calendarPanel = Ext.create('Ext.Panel',{
-	    
+	    cls:'cal_panel',
 	    html : "<div id='"+me.getPlaceholderid()+"'></div>"    
 	});
 	this.setItems([me.topToolBar,me.bottomToolBar,me.calendarPanel])

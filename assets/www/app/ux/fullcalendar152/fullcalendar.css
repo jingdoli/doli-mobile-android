@@ -124,11 +124,13 @@ html .fc,
 
 .fc-widget-header,    /* <th>, usually */
 .fc-widget-content {  /* <td>, usually */
-	border: 1px solid #ccc;
+	border: 1px solid rgba(247, 193, 55, 0.62);
+	background:rgba(167, 128, 77, 0.53) !important;
 	}
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
 	background: #ffc;
+	
 	}
 	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */

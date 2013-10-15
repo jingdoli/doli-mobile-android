@@ -767,3 +767,26 @@ takenotepopup.x-panel.x-floating, .takenotepopup .x-panel-inner {
   -o-animation-name: glowing;
   animation-name: glowing;
 }
+
+/*Calender view*/
+
+.calender_top_toolbar
+{
+	background-color:rgba(163, 93, 0, 0.53);
+	background-image:none;
+}
+.calender_bottom_toolbar
+{
+	background-color:rgba(163, 93, 0, 0.53);
+	background-image:none;
+}
+.calender_top_toolbar_btn1
+{
+	background-color:rgba(163, 93, 0, 0.53) !important;
+	background-image:none !important;
+	
+}
+.x-toolbar-dark .x-title {
+	font-size: 76%;
+	font-family:"Times New Roman",Times,serif;
+}
