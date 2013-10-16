@@ -38,7 +38,7 @@ Ext.define('Ext.ux.FullCalendar', {
 	    		xtype:'button',
                 //text: 'Month',
 	    		iconCls:'calender_month',
-	    		 cls:'calender_top_toolbar_btn1',
+	    		 cls:'calender_top_toolbar_btn1 month_btn',
                 //ui:'action',
                 //pressed: (me.getDefaultview() == "month") ? true : false,
                 handler:function(){
@@ -48,7 +48,7 @@ Ext.define('Ext.ux.FullCalendar', {
             	xtype:'button',
                 //text: 'Week',
                 iconCls:'calender_week',
-                cls:'calender_top_toolbar_btn1',
+                cls:'calender_top_toolbar_btn1 month_btn',
                 //ui:'action',
                 //pressed: (me.getDefaultview() == "agendaWeek") ? true : false,
                 handler: function(){
@@ -59,7 +59,7 @@ Ext.define('Ext.ux.FullCalendar', {
                 xtype:'button',
                 iconCls:'calender_day',
                 //ui:'action',
-                cls:'calender_top_toolbar_btn1',
+                cls:'calender_top_toolbar_btn1 month_btn',
                 //pressed: (me.getDefaultview() == "agendaDay") ? true : false,
                 handler: function(){
                     me.changeCalendarView('agendaDay');

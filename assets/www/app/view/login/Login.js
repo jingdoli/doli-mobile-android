@@ -71,6 +71,7 @@ Ext.define("doli.view.login.Login",{
 						xtype : 'button',
 						//text : 'Facebook-Login',
 						cls : 'loginscreen_facebookbtn',
+						hidden : true,
 						//html: '<img class="loginscreen_facebookbtn_img" src="img/fb_login_icon.png"/>',
 						itemId : 'loginscreen_facebookbtn',
 						handler:function(){

@@ -14,6 +14,7 @@ Ext.define("doli.util.DoliUtils",{
 	FORWARD_SLASH:'dolifwdslash',
 	SPACE:"dolispace",
 	SUCCESS:1,
+	isTestingMode:false,
 	ERROR:0,
 	USER_PIC:'app/resources/img/user_nopic.png',
 	setLoadingMask:function(text){
@@ -78,7 +79,10 @@ Ext.define("doli.util.DoliUtils",{
 		    failure: function(response) {
 		    	//alert("F"+response.status);
 		    	//Testing purpose only  #####################################
-		    	//DoliUtils.loginSuccess();
+		    	if(DoliUtils.isTestingMode){
+		    		DoliUtils.loginSuccess();
+		    	}
+		    	
 		    	localStorage.setItem("username",username);
 		    	DoliUtils.mixpanelTrack("Login Failure")
 		    	//Testing purpose only #####################################

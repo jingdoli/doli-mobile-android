@@ -30,7 +30,7 @@ Ext.define('doli.view.mainpanel.events.FullCalender',
 						eventclick : function(calEvent, jsEvent, view, fc) {
 							DoliUtils.mixpanelTrack("Event Viewed")
 							console.log([calEvent, jsEvent, view, fc])
-							Ext.Msg.alert( calEvent.title,calEvent.start+"to"+calEvent.end);
+							Ext.Msg.alert( calEvent.title,calEvent.start+" to "+calEvent.end);
 //							alert('Coordinates: ' + jsEvent.pageX + ','
 //									+ jsEvent.pageY);
 //							alert('View: ' + view.name);
