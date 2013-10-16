@@ -90,7 +90,7 @@ Ext.define("doli.view.login.Login",{
 					
 					{
 						xtype:'label',
-						html:'<div class="version_tag"><center> &copy; 2013 Doli Diaries , Beta v 0.1</center></div>'
+						html:'<div class="version_tag"><center> &copy; 2013 Doli Diaries , Beta v 0.3</center></div>'
 					}
 					
 					],
