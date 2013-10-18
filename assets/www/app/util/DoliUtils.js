@@ -14,7 +14,7 @@ Ext.define("doli.util.DoliUtils",{
 	FORWARD_SLASH:'dolifwdslash',
 	SPACE:"dolispace",
 	SUCCESS:1,
-	isTestingMode:false,
+	isTestingMode:true,
 	ERROR:0,
 	USER_PIC:'app/resources/img/user_nopic.png',
 	setLoadingMask:function(text){

@@ -34,7 +34,7 @@ Ext.define("doli.store.imagegallery.ImageGallery", {
                 ],
 		data:[
 		      
-		// { imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
+		 { imageurl:'app/resources/img/doli.png',comment:'Test Image',date:Date()},
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
 //		      { imageurl:'app/resources/img/doli.png'},
 //		      { imageurl:'app/resources/img/doli.png'},
@@ -47,7 +47,7 @@ Ext.define("doli.store.imagegallery.ImageGallery", {
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
 //		      { imageurl:'app/resources/img/doli.png'},
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
-//		      { imageurl:'app/resources/img/bridedress.png'},
+		      { imageurl:'app/resources/img/bridedress.png'},
 //		      { imageurl:'app/resources/img/doli.png'},
 //		      { imageurl:'app/resources/img/dress1.png'},
 //		      { imageurl:'app/resources/img/shaadi.jpg'},
